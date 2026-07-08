@@ -3,6 +3,7 @@ package Sistema.Grafo;
 import java.util.Objects;
 
 import Sistema.Lista.Lista;
+import Sistema.Lista.Cola;
 
 public class Grafo {
     private NodoVert inicio;
