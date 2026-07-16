@@ -46,13 +46,12 @@ public class Grafo {
         return aux;
     }
 
-    // SOLUCIONADO EL BUG: Ahora el bucle sí se ejecuta correctamente
     private NodoVert[] ubicarVertOrigDestino(Object origen, Object destino) {
         NodoVert[] arr = new NodoVert[2];
         NodoVert aux = this.inicio;
         while (aux != null && (arr[0] == null || arr[1] == null)) {
-            if (Objects.equals(aux.getElem(), origen))  arr[0] = aux;
-            if (Objects.equals(aux.getElem(), destino)) arr[1] = aux;
+            if (aux.getElem().equals(origen))  arr[0] = aux;
+            if (aux.getElem().equals(destino)) arr[1] = aux;
             aux = aux.getSigVertice();
         }
         return arr;
@@ -64,14 +63,14 @@ public class Grafo {
 
     public boolean eliminarVertice(Object elem) {
         boolean valor = false;
-        if(this.inicio != null){
+        if (this.inicio != null) {
             if (this.inicio.getElem().equals(elem)) {
                 eliminarTodosApuntadores(this.inicio);
                 this.inicio = this.inicio.getSigVertice();
                 valor = true;
             } else {
                 NodoVert vertAnterior = ubicaVertAnterior(elem);
-                if(vertAnterior != null){
+                if (vertAnterior != null) {
                     NodoVert vert = vertAnterior.getSigVertice();
                     if (vert != null) {
                         eliminarTodosApuntadores(vert);
@@ -130,7 +129,7 @@ public class Grafo {
 
     private void quitarArcoDirecto(NodoVert origen, NodoVert destino) {
         NodoAdy aux = origen.getPrimerAdy();
-        if (aux != null){ 
+        if (aux != null) { 
             if (aux.getVertice() == destino) {
                 origen.setPrimerAdy(aux.getSigAdyacente());
             } else {
@@ -164,9 +163,12 @@ public class Grafo {
     }
 
     public boolean existeArco(Object origen, Object destino) {
+        boolean exito = false;
         NodoVert[] arr = ubicarVertOrigDestino(origen, destino);
-        if (arr[0] == null || arr[1] == null) return false;
-        return existeArcoDirecto(arr[0], arr[1]);
+        if (!(arr[0] == null || arr[1] == null)){
+            exito = existeArcoDirecto(arr[0], arr[1]);
+        }
+        return exito;
     }
 
     public boolean esVacio() {
@@ -207,7 +209,7 @@ public class Grafo {
         boolean encontrado = false;
         if (vert == destino) {
             encontrado = (puntosAcumulados <= k);
-        } else if (puntosAcumulados < k) { // Poda por eficiencia si ya nos pasamos
+        } else if (puntosAcumulados < k) { 
             visitados.insertar(vert, visitados.longitud() + 1);
             NodoAdy ady = vert.getPrimerAdy();
             while (ady != null && !encontrado) {
@@ -223,24 +225,27 @@ public class Grafo {
     }
 
     // 3. minimoPuntaje 
-    public Lista minimoPuntaje(Object hab1, Object hab2) {
+    public String minimoPuntaje(Object hab1, Object hab2) {
+        String resultado;
         NodoVert[] arr = ubicarVertOrigDestino(hab1, hab2);
         Lista mejorCamino = new Lista();
         if (arr[0] != null && arr[1] != null) {
             int[] minPuntaje = {Integer.MAX_VALUE};
             minimoPuntajeAux(arr[0], arr[1], new Lista(), mejorCamino, new Lista(), 0, minPuntaje);
             if (minPuntaje[0] == Integer.MAX_VALUE) {
-                System.out.println("No hay caminos disponibles entre las habitaciones.");
+                resultado = "No hay caminos disponibles entre las habitaciones.";
             } else {
-                System.out.println("Mínimo puntaje absoluto a acumular: " + minPuntaje[0]);
+                resultado = "Mínimo puntaje absoluto a acumular: " + minPuntaje[0] + " | Camino: " + mejorCamino.toString();
             }
+        }else{
+            resultado = "Al menos una de las habitaciones no existe en el grafo.";
         }
-        return mejorCamino;
+        return resultado;
     }
 
     private void minimoPuntajeAux(NodoVert vert, NodoVert destino, Lista caminoActual, Lista mejorCamino, 
                                   Lista visitados, int puntajeActual, int[] minPuntaje) {
-        visitados.insertar(vert,  1);
+        visitados.insertar(vert, 1);
         caminoActual.insertar(vert.getElem(), caminoActual.longitud() + 1);
 
         if (vert == destino) {
@@ -248,7 +253,7 @@ public class Grafo {
                 minPuntaje[0] = puntajeActual;
                 copiarLista(caminoActual, mejorCamino);
             }
-        } else if (puntajeActual < minPuntaje[0]) { // Poda crítica de rendimiento
+        } else if (puntajeActual < minPuntaje[0]) { 
             NodoAdy ady = vert.getPrimerAdy();
             while (ady != null) {
                 NodoVert sig = ady.getVertice();
@@ -269,29 +274,20 @@ public class Grafo {
         Lista caminosValidos = new Lista();
 
         if (arr[0] != null && arr[1] != null && evitar != null) {
-            System.out.println("Caminos de " + hab1 + " a " + hab2 + " sin pisar " + hab3 + " (Máx " + P + " pts):");
             sinPasarPorAux(arr[0], arr[1], evitar, P, 0, new Lista(), new Lista(), caminosValidos);
         }
         return caminosValidos;
     }
 
-   private void sinPasarPorAux(NodoVert vert, NodoVert destino, NodoVert evitar, int maxPuntos, 
+    private void sinPasarPorAux(NodoVert vert, NodoVert destino, NodoVert evitar, int maxPuntos, 
                                 int puntosAcumulados, Lista caminoActual, Lista visitados, Lista todosLosCaminos) {
-        
-        // Solo procesamos la rama si NO tocamos el nodo prohibido y NO excedemos el puntaje máximo
         if (vert != evitar && puntosAcumulados <= maxPuntos) {
-            
             visitados.insertar(vert, 1);
             caminoActual.insertar(vert.getElem(), caminoActual.longitud() + 1);
 
             if (vert == destino) {
-                // Se clona el camino actual exitoso para guardarlo en la lista contenedora
-                Lista caminoEncontrado = new Lista();
-                copiarLista(caminoActual, caminoEncontrado);
-                todosLosCaminos.insertar(caminoEncontrado,  1);
-                
-                // Mostrar por pantalla directo como pide el enunciado
-                System.out.println("-> Ruta válida: " + caminoActual.toString() + " | Puntos totales requeridos: " + puntosAcumulados);
+                String info = "Ruta válida: " + caminoActual.toString() + " | Puntos totales requeridos: " + puntosAcumulados;
+                todosLosCaminos.insertar(info, 1);
             } else {
                 NodoAdy ady = vert.getPrimerAdy();
                 while (ady != null) {
@@ -302,7 +298,6 @@ public class Grafo {
                     ady = ady.getSigAdyacente();
                 }
             }
-            // Paso de Backtracking
             visitados.eliminar(visitados.longitud());
             caminoActual.eliminar(caminoActual.longitud());
         }
@@ -393,7 +388,6 @@ public class Grafo {
         return l;
     }
 
-    
     public Grafo clone() {
         Grafo clon = new Grafo();
         if (this.inicio == null) return clon;
@@ -411,7 +405,7 @@ public class Grafo {
         auxOrig = this.inicio;
         NodoVert auxClon = clon.inicio;
         while (auxOrig != null) {
-            NodoAdy adyOrig   = auxOrig.getPrimerAdy();
+            NodoAdy adyOrig    = auxOrig.getPrimerAdy();
             NodoAdy ultAdyClon = null;
             while (adyOrig != null) {
                 NodoVert destinoClon = clon.ubicaVert(adyOrig.getVertice().getElem());

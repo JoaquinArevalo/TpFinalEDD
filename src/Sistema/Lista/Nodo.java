@@ -1,4 +1,4 @@
-package Lista;
+package Sistema.Lista;
 
 class Nodo {
     private Object elem;

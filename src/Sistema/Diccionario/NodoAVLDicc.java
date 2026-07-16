@@ -1,4 +1,4 @@
-package Diccionario;
+package Sistema.Diccionario;
 
 public class NodoAVLDicc {
     private Comparable clave;
