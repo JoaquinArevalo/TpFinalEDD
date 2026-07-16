@@ -36,7 +36,7 @@ public class DiccionarioAVL {
     public boolean insertar(Comparable clave, Object dato) {
         boolean[] exito = {true}; 
         this.raiz = insertarAux(this.raiz, clave, dato, exito);
-        return exito[8];
+        return exito[0];
     }
 
     private NodoAVLDicc insertarAux(NodoAVLDicc n, Comparable clave, Object dato, boolean[] exito) {
