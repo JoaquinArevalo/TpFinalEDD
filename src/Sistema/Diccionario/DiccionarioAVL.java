@@ -1,5 +1,5 @@
 package Sistema.Diccionario;
-
+import Sistema.Lista.Lista;
 public class DiccionarioAVL {
     private NodoAVLDicc raiz;
 
@@ -148,6 +148,30 @@ public class DiccionarioAVL {
         h.recalcularAltura();
         return h;
     }
+    public Lista listarRango(Comparable min,Comparable max){
+        Lista res = new Lista();
+        if(this.raiz != null){
+            listarRangoAux(min,max,res,this.raiz);
+        }
+        return res;
+    }
+    private void listarRangoAux(Comparable min,Comparable max, Lista lista, NodoAVLDicc aux){
+        if(aux != null){
+            if(aux.getClave().compareTo(min)< 0){
+                listarRangoAux(min,max,lista,aux.getDerecho());
+            }
+            if(aux.getClave().compareTo(max)> 0){
+                listarRangoAux(min,max,lista,aux.getIzquierdo());
+            }
+            if(aux.getClave().compareTo(min)>= 0 && aux.getClave().compareTo(max)<= 0){
+                lista.insertar(aux.getDato(), 1);
+                listarRangoAux(min,max,lista,aux.getIzquierdo());
+                listarRangoAux(min,max,lista,aux.getDerecho());
+            }
+        
+        }
+    }
+
     public String toString() {
         return (this.raiz == null) ? "Diccionario vacío" : generarStringArbol(this.raiz, "");
     }
