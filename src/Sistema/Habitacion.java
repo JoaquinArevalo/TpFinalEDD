@@ -18,7 +18,9 @@ public class Habitacion {
         this.tieneSalida = tieneSalida;
         this.desafios = new DiccionarioAVL();
     }
-
+    public Desafio buscarDesafio(int numeroDesafio) {
+        return (Desafio) desafios.obtenerInformacion(numeroDesafio);
+    }
 
     public int getCodigo() {
         return codigo;

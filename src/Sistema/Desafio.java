@@ -44,4 +44,12 @@ public class Desafio {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+    public String toString() {
+        return "Desafio{" +
+                "codigoHabitacion=" + codigoHabitacion +
+                ", puntaje=" + puntaje +
+                ", nombre='" + nombre + '\'' +
+                ", tipo='" + tipo + '\'' +
+                '}';
+    }
 }
