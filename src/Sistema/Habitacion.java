@@ -1,7 +1,7 @@
 package Sistema;
 
 import Sistema.Diccionario.DiccionarioAVL;
-
+import Sistema.Lista.Lista;
 public class Habitacion {
     private int codigo;
     private String nombre;
@@ -18,6 +18,7 @@ public class Habitacion {
         this.tieneSalida = tieneSalida;
         this.desafios = new DiccionarioAVL();
     }
+    
     public Desafio buscarDesafio(int numeroDesafio) {
         return (Desafio) desafios.obtenerInformacion(numeroDesafio);
     }
@@ -68,5 +69,8 @@ public class Habitacion {
 
     public void setDesafios(DiccionarioAVL desafios) {
         this.desafios = desafios;
+    }
+    public Lista getDesafiosRango(int min, int max) {
+        return desafios.listarRango(min, max);
     }
 }
