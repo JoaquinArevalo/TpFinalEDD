@@ -73,4 +73,15 @@ public class Habitacion {
     public Lista getDesafiosRango(int min, int max) {
         return desafios.listarRango(min, max);
     }
+    
+    @Override
+    public String toString() {
+        return "Habitacion{" +
+                "codigo=" + codigo +
+                ", nombre='" + nombre + '\'' +
+                ", planta=" + planta +
+                ", metrosCuadrados=" + metrosCuadrados +
+                ", tieneSalida=" + tieneSalida +
+                '}';
+    }
 }
