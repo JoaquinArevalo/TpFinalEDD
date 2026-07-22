@@ -422,27 +422,35 @@ public class Grafo {
     }
 
     @Override
-    public String toString() {
-        String s = "";
-        NodoVert auxVert = this.inicio;
-        while (auxVert != null) {
-            s += auxVert.getElem().toString() + " -> ";
-            NodoAdy auxAdy = auxVert.getPrimerAdy();
-            if (auxAdy == null) {
-                s += "sin adyacentes";
-            } else {
-                while (auxAdy != null) {
-                    s += "(" + auxAdy.getVertice().getElem().toString()
-                            + ", " + auxAdy.getEtiqueta() + ")";
-                    auxAdy = auxAdy.getSigAdyacente();
-                    if (auxAdy != null) s += " - ";
-                }
-            }
-            s += "\n";
-            auxVert = auxVert.getSigVertice();
-        }
-        return s;
+public String toString() {
+    // Asumiendo que tu primer nodo vértice se llama 'inicio' (o cambialo por el nombre de tu atributo)
+    if (this.inicio == null) {
+        return "El grafo de la casa está vacío.";
     }
+    
+    String resultado = "";
+    NodoVert aux = this.inicio;
+    
+    // Recorremos la lista de vértices
+    while (aux != null) {
+        resultado += "Habitación: " + aux.getElem().toString() + " -> Puertas hacia: ";
+        NodoAdy ady = aux.getPrimerAdy(); // Asumiendo que así obtienes el primer adyacente
+        
+        if (ady == null) {
+            resultado += "Ninguna (Sin salida)";
+        } else {
+            // Recorremos la lista de adyacentes de este vértice
+            while (ady != null) {
+                // Se asume que el grafo está etiquetado con el puntaje exigido
+                resultado += "[" + ady.getVertice().getElem().toString() + " (Exige: " + ady.getEtiqueta() + " pts)] ";
+                ady = ady.getSigAdyacente();
+            }
+        }
+        resultado += "\n";
+        aux = aux.getSigVertice(); // Pasamos al siguiente vértice del grafo
+    }
+    return resultado;
+}
     public int ObtenerEtiqueta(Object hab, Object habABuscar){
         NodoVert[] arr = ubicarVertOrigDestino(hab, habABuscar);
         int i=-1;
