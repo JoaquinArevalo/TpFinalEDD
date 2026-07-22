@@ -13,19 +13,21 @@ public class EscapeHouse {
     private HashMap<String, HashMap<Integer, Lista>> desafiosResueltos; // Desafios resueltos por equipo
 
 
-    public void mostrarDesafio(int numeroDesafio, int numeroHabitacion){
+    public String mostrarDesafio(int numeroDesafio, int numeroHabitacion){
+            String res = "";
             Habitacion hab = (Habitacion) casona.obtenerInformacion(numeroHabitacion);
             Desafio desafio = null;
             if(hab != null){
                 desafio = hab.buscarDesafio(numeroDesafio);
                 if(desafio != null){
-                    System.out.println("Desafío encontrado: " + desafio.toString());
+                    res += "Desafío encontrado: " + desafio.toString() + "\n";
                 } else {
-                    System.out.println("El desafío no existe en la habitación especificada.");
+                    res += "El desafío no existe en la habitación especificada.\n";
                 }
             }else{
-                System.out.println("La habitación no existe.");
+                res += "La habitación no existe.\n";
             }
+            return res;
         }
 
     public String mostrarDesafiosResueltos(String nomEquipo) {
@@ -57,22 +59,36 @@ public class EscapeHouse {
         }
         return resultado; 
     }
-    public void mostrarDesafiosTipo(int codHab, String tipoDesafio, int a, int b){
+    public String mostrarDesafiosTipo(int codHab, String tipoDesafio, int a, int b) {
+        // 1. Inicializamos el String vacío
+        String resultado = ""; 
         Habitacion hab = (Habitacion) casona.obtenerInformacion(codHab);
-        if(hab != null){
+        
+        if (hab != null) {
             Lista desafios = hab.getDesafiosRango(a, b);
-            if(!desafios.esVacia()){
-                System.out.println("Desafíos del tipo '" + tipoDesafio + "' en la habitación " + codHab + " con puntaje entre " + a + " y " + b + ":");
-                while(!desafios.esVacia()){
+            if (!desafios.esVacia()) {
+                resultado += "Desafíos del tipo '" + tipoDesafio + "' en la habitación " + codHab + " con puntaje entre " + a + " y " + b + ":\n";
+                boolean encontroAlguno = false; 
+                while (!desafios.esVacia()) {
                     Desafio desafio = (Desafio) desafios.recuperar(1);
-                    if(desafio.getTipo().equalsIgnoreCase(tipoDesafio)){
-                        System.out.println(desafio.toString());
+                    if (desafio.getTipo().equalsIgnoreCase(tipoDesafio)) {
+                        resultado += desafio.toString() + "\n";
+                        encontroAlguno = true;
                     }
                     desafios.eliminar(1);
                 }
+                if (!encontroAlguno) {
+                    resultado = "No se encontraron desafíos del tipo '" + tipoDesafio + "' en el rango [" + a + ", " + b + "].";
+                }
+                
+            } else {
+                resultado = "No hay ningún tipo de desafío en el rango [" + a + ", " + b + "] en la habitación " + codHab + ".";
             }
+        } else {
+            resultado = "Error: La habitación " + codHab + " no existe.";
         }
-    } 
+        return resultado;
+    }
     public boolean verificarDesafioResuelto(String nomEquipo, int codHabitacion, int puntajeDesafio) {
         boolean resuelto = false;
         HashMap<Integer,Lista> desafiosHechos = desafiosResueltos.get(nomEquipo);
