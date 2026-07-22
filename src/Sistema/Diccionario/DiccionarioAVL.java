@@ -199,4 +199,17 @@ public class DiccionarioAVL {
         
         return resultado;
     }
+    public Lista listarInorden() {//el mas prolijo para un diccionarioAvl porque quedan ordenados por puntaje
+        Lista lis = new Lista();
+        listarInordenAux(this.raiz, lis);
+        return lis;
+    }
+
+    private void listarInordenAux(NodoAVLDicc nodo, Lista lis) {
+        if (nodo != null) {
+            listarAux(nodo.getIzquierdo(), lis);
+            lis.insertar(nodo.getDato(), lis.longitud() + 1);
+            listarAux(nodo.getDerecho(), lis);
+        }
+    }
 }

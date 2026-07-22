@@ -443,4 +443,18 @@ public class Grafo {
         }
         return s;
     }
+    public int ObtenerEtiqueta(Object hab, Object habABuscar){
+        NodoVert[] arr = ubicarVertOrigDestino(hab, habABuscar);
+        int i=-1;
+        NodoAdy puertas=arr[0].getPrimerAdy();
+        if( arr[0] != null && arr[1] != null){
+            while(i == -1 && puertas!=null){//las puertas no pueden ser negativas
+                if(puertas.getVertice()==arr[1]){
+                    i=puertas.getEtiqueta();
+                }
+                puertas=puertas.getSigAdyacente();
+            }
+        }
+        return i;
+    }
 }
