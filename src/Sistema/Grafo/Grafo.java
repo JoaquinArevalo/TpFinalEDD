@@ -423,7 +423,6 @@ public class Grafo {
 
     @Override
 public String toString() {
-    // Asumiendo que tu primer nodo vértice se llama 'inicio' (o cambialo por el nombre de tu atributo)
     if (this.inicio == null) {
         return "El grafo de la casa está vacío.";
     }
