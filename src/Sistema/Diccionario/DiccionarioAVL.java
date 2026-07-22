@@ -177,28 +177,23 @@ public class DiccionarioAVL {
     }
 
     private String generarStringArbol(NodoAVLDicc nodo, String prefijo) {
-        if (nodo == null) {
-            return "";
-        }
-        
-        String resultado = "";
-        
+    // Inicializamos el resultado vacío
+    String resultado = "";
+    // Solo procesamos si el nodo actual no es nulo
+    if (nodo != null) {
         // 1. Recorremos primero el hijo derecho (se imprime arriba)
         resultado += generarStringArbol(nodo.getDerecho(), prefijo + "        ");
-        
         // 2. Calculamos el balance actual para mostrarlo
         int altIzq = (nodo.getIzquierdo() != null) ? nodo.getIzquierdo().getAltura() : -1;
         int altDer = (nodo.getDerecho() != null) ? nodo.getDerecho().getAltura() : -1;
         int balance = altIzq - altDer;
-        
         // 3. Imprimimos el nodo actual con su información clave
         resultado += prefijo + "|-- " + nodo.getClave() + " (Alt: " + nodo.getAltura() + ", Bal: " + balance + ")\n";
-        
         // 4. Recorremos el hijo izquierdo (se imprime abajo)
         resultado += generarStringArbol(nodo.getIzquierdo(), prefijo + "        ");
-        
-        return resultado;
     }
+    return resultado;
+}
     public Lista listarInorden() {//el mas prolijo para un diccionarioAvl porque quedan ordenados por puntaje
         Lista lis = new Lista();
         listarInordenAux(this.raiz, lis);
