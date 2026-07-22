@@ -4,6 +4,7 @@ import Sistema.Diccionario.DiccionarioAVL;
 import Sistema.Lista.Lista;
 
 public class ethan {
+    //ejercicio 1
     public String mostrarInfoEquipo(String nombre) {
         Equipo equipo = equipos.get(nombre);
         String data="";
@@ -15,19 +16,24 @@ public class ethan {
         }
         return data;
     }
+
+    //ejercicio 2
     public String posiblesDesafios(Equipo equipo, Habitacion hab){
-        Habitacion habEquipoParado=casona.obtenerInformacion(equipo.getCodigoHabitacion());
-        boolean adyacente=existeCamino(habEquipoParado,hab);
+        Habitacion habEquipoParado=(Habitacion) casona.obtenerInformacion(equipo.getCodigoHabitacion());
+        boolean adyacente=casona.existeArcoDirecto(habEquipoParado,hab);
         String data="";
         if(adyacente){
-            int diferencia=ObtenerEtiqueta(habEquipoParado,hab)-equipo.getPuntajeAcumulado();
+            int diferencia=mapa.ObtenerEtiqueta(habEquipoParado,hab)-equipo.getPuntajeAcumulado();
             if(diferencia<=0){
                 data="El equipo puede pasar a la habitacion, no necesita completar ningun desafio";
             }else{
                 HashMap<Integer, Lista> des = desafiosResueltos.get(equipo.getNombre());
-                Lista aux=des.get(equipo.getCodigoHabitacion());
+                Lista aux = null;
+                if(des != null){
+                    aux = des.get(equipo.getCodigoHabitacion());
+                }
                 Lista l=eliminarDesafiosRealizados(habEquipoParado,aux);
-                l=filtrarDesafiosNecesarios(l,diferencia);
+                l=filtrarDesafiosPorPuntaje(l,diferencia);
                 if(l!=null){
                     data="Los desafios posibles son: "+l.toString();
                 }else{
@@ -39,6 +45,7 @@ public class ethan {
         }
         return data;
     }
+
     private Lista eliminarDesafiosRealizados(Habitacion habActual, Lista desafiosResueltos) {
         Lista disponibles = habActual.getDesafios().listarInorden();
         if (desafiosResueltos != null && !desafiosResueltos.esVacia()) {
@@ -63,7 +70,9 @@ public class ethan {
         }    
         return disponibles;
     }
-    private Lista filtrarDesafiosNecesarios(Lista l, int diferencia){
+
+    private Lista filtrarDesafiosPorPuntaje(Lista l, int diferencia){
+        //destruye la lista para eficiencia, cuidado
         Lista filtrados=new Lista();
         while(!l.esVacia()){
             Desafio desafioActual=(Desafio) l.recuperar(1);
@@ -73,5 +82,91 @@ public class ethan {
             l.eliminar(1);
         }
         return filtrados;
+    }
+
+    //ejercicio 3
+    public boolean jugarDesafio(Equipo equipo, Desafio elDesafio) {
+        boolean exito = revisarCondiciones(equipo, elDesafio);
+        if (exito) {
+            equipo.setPuntajeHabitacion(equipo.getPuntajeHabitacion() + elDesafio.getPuntaje());
+            equipo.setPuntajeAcumulado(equipo.getPuntajeAcumulado() + elDesafio.getPuntaje());
+            HashMap<Integer, Lista> aux = desafiosResueltos.get(equipo.getNombre());
+            if (aux == null) {
+                aux = new HashMap<>();
+                desafiosResueltos.put(equipo.getNombre(), aux);
+            }
+
+            Habitacion laHabitacion = (Habitacion) casona.obtenerInformacion(equipo.getCodigoHabitacion());
+            Lista listaDesafios = aux.get(laHabitacion.getCodigo());
+
+            if (listaDesafios == null) {
+                listaDesafios = new Lista();
+                aux.put(laHabitacion.getCodigo(), listaDesafios);
+            }
+
+            listaDesafios.insertar(elDesafio, listaDesafios.longitud() + 1);
+        }
+
+        return exito;
+    }
+
+    private boolean revisarCondiciones(Equipo equipo, Desafio elDesafio) {
+        boolean exito = validarParametros(equipo, elDesafio);
+        if (exito) {
+            Habitacion hab =(Habitacion) casona.obtenerInformacion(equipo.getCodigoHabitacion());
+            exito = hab != null
+                    && hab.getDesafios().contiene(elDesafio.getPuntaje())
+                    && desafioNoResuelto(equipo, elDesafio);
+        }
+        return exito;
+    }
+
+    private boolean validarParametros(Equipo equipo, Desafio elDesafio) {
+        return equipo != null
+                && elDesafio != null;
+    }
+
+    private boolean desafioNoResuelto(Equipo equipo, Desafio elDesafio) {
+        boolean exito = true;
+        HashMap<Integer, Lista> aux = desafiosResueltos.get(equipo.getNombre());
+        if (aux != null) {
+
+            Lista lista = aux.get(equipo.getCodigoHabitacion());
+            if (lista != null) {
+                int i = 1;
+                int longi=lista.longitud();
+                while (i <= longi && exito) {
+                    Desafio d = (Desafio) lista.recuperar(i);
+
+                    if (d.getPuntaje() == elDesafio.getPuntaje()) {
+                        exito = false;
+                    }
+                    i++;
+                }
+            }
+        }
+        return exito;
+    }
+    //ejericio 4
+    public boolean cambiarDeHabitacion(Equipo equipo, Habitacion habAPasar){
+        boolean exito=verificarCondicionesCambio(equipo,habAPasar);
+        if(exito){
+            equipo.setPuntajeHabitacion(0);
+            equipo.setCodigoHabitacion(habAPasar.getCodigo());
+        }
+        return exito;
+    }
+    private boolean verificarCondicionesCambio(Equipo equipo, Habitacion habAPasar){
+        boolean exito = false;
+        if (equipo != null && habAPasar != null) {
+            Habitacion habActual =
+                (Habitacion) casona.obtenerInformacion(equipo.getCodigoHabitacion());
+            if (habActual != null) {
+                exito = existeArcoDirecto(habActual, habAPasar)
+                        && equipo.getPuntajeHabitacion() >=
+                        mapa.ObtenerEtiqueta(habActual, habAPasar);
+            }
+        }
+        return exito;
     }
 }
