@@ -1,0 +1,82 @@
+# ==============================================================================
+# ARCHIVO DE CARGA INICIAL - ESCAPE HOUSE
+# Formato Habitacion: HABITACION;codigo;nombre;planta;m2;salidaExterior
+# Formato Conexion:   CONEXION;origen;destino;puntajeMinimo
+# Formato Desafio:    DESAFIO;codHabitacion;puntaje;nombre;tipo
+# Formato Equipo:     EQUIPO;nombre;puntajeExigido;puntajeAcumulado;codHabitacion;puntajeHabitacion
+# ==============================================================================
+
+# --- HABITACIONES (10 en total, plantas 0, 1 y 2) ---
+HABITACION;101;Recibidor Principal;0;45.0;false
+HABITACION;102;Biblioteca Oscura;0;30.5;false
+HABITACION;103;Jardin de Invierno;0;50.0;true
+HABITACION;104;Comedor de Gala;0;40.0;false
+HABITACION;201;Dormitorio del Barón;1;35.0;false
+HABITACION;202;Laboratorio Alquímico;1;28.0;false
+HABITACION;203;Sala de Armas;1;32.5;false
+HABITACION;204;Balcon Terraza;1;15.0;true
+HABITACION;301;El Atico Olvidado;2;20.0;false
+HABITACION;302;Observatorio Astronómico;2;25.0;true
+
+# --- CONEXIONES ENTRE HABITACIONES (Grafo de la casona) ---
+# Desde el Recibidor (101)
+CONEXION;101;102;10
+CONEXION;101;104;15
+CONEXION;101;201;20
+# Desde la Biblioteca (102)
+CONEXION;102;103;30
+CONEXION;102;202;25
+# Desde el Comedor (104)
+CONEXION;104;103;35
+CONEXION;104;203;20
+# Planta Alta (200s)
+CONEXION;201;202;15
+CONEXION;201;203;15
+CONEXION;202;301;40
+CONEXION;203;204;50
+# Atico y Observatorio (300s)
+CONEXION;301;302;60
+CONEXION;204;302;45
+
+# --- DESAFIOS POR HABITACION (Clave = puntaje, sin repetir en misma hab) ---
+# Hab 101 - Recibidor
+DESAFIO;101;10;El candelabro torcido;Lógico
+DESAFIO;101;15;La alfombra de números;Matemático
+DESAFIO;101;5;Llave bajo el felpudo;Búsqueda
+
+# Hab 102 - Biblioteca
+DESAFIO;102;20;El libro sin páginas;Lógico
+DESAFIO;102;25;Código de Dewey invertido;Matemático
+DESAFIO;102;30;La página rasgada;Búsqueda
+
+# Hab 103 - Jardin de Invierno (Tiene salida al exterior)
+DESAFIO;103;15;El enigma de las rosas;Lógico
+DESAFIO;103;35;Estatua alineada al sol;Destreza
+
+# Hab 104 - Comedor
+DESAFIO;104;10;Los cubiertos de plata;Búsqueda
+DESAFIO;104;20;La copa envenenada;Lógico
+
+# Hab 201 - Dormitorio
+DESAFIO;201;15;El reloj de péndulo;Matemático
+DESAFIO;201;25;El cuadro con doble fondo;Búsqueda
+
+# Hab 202 - Laboratorio
+DESAFIO;202;30;Mezcla de pociones;Destreza
+DESAFIO;202;40;El peso de los metales;Matemático
+
+# Hab 203 - Sala de Armas
+DESAFIO;203;20;La espada en la piedra;Destreza
+DESAFIO;203;50;El escudo heráldico;Lógico
+
+# Hab 301 - Atico
+DESAFIO;301;40;El cofre sellado con cadenas;Destreza
+DESAFIO;301;60;El acertijo del fantasma;Lógico
+
+# --- EQUIPOS PARTICIPANTES ---
+# Nombre;Exigido;Acumulado;HabActual;PuntajeEnHab
+EQUIPO;Los Alquimistas;100;0;101;0
+EQUIPO;Mente Maestra;150;45;102;20
+EQUIPO;Buscadores de Tesoros;80;70;103;15
+EQUIPO;Sherlock y Watson;120;30;201;0
+EQUIPO;Escapistas Pro;200;110;301;40
