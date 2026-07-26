@@ -202,9 +202,9 @@ public class DiccionarioAVL {
 
     private void listarInordenAux(NodoAVLDicc nodo, Lista lis) {
         if (nodo != null) {
-            listarAux(nodo.getIzquierdo(), lis);
+            listarInordenAux(nodo.getIzquierdo(), lis);
             lis.insertar(nodo.getDato(), lis.longitud() + 1);
-            listarAux(nodo.getDerecho(), lis);
+            listarInordenAux(nodo.getDerecho(), lis);
         }
     }
 }

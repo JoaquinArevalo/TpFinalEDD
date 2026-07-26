@@ -2,6 +2,9 @@ package Sistema;
 
 import Sistema.Diccionario.DiccionarioAVL;
 import Sistema.Lista.Lista;
+import java.util.HashMap;
+import Sistema.Grafo.Grafo;
+import Sistema.EscapeHouse;
 
 public class ethan {
     //ejercicio 1
@@ -20,10 +23,10 @@ public class ethan {
     //ejercicio 2
     public String posiblesDesafios(Equipo equipo, Habitacion hab){
         Habitacion habEquipoParado=(Habitacion) casona.obtenerInformacion(equipo.getCodigoHabitacion());
-        boolean adyacente=casona.existeArcoDirecto(habEquipoParado,hab);
+        boolean adyacente=mapa.existeArcoDirecto(habEquipoParado,hab);
         String data="";
         if(adyacente){
-            int diferencia=mapa.ObtenerEtiqueta(habEquipoParado,hab)-equipo.getPuntajeAcumulado();
+            int diferencia=mapa.ObtenerEtiqueta(habEquipoParado,hab)-equipo.getPuntajeHabitacion();
             if(diferencia<=0){
                 data="El equipo puede pasar a la habitacion, no necesita completar ningun desafio";
             }else{
@@ -34,7 +37,7 @@ public class ethan {
                 }
                 Lista l=eliminarDesafiosRealizados(habEquipoParado,aux);
                 l=filtrarDesafiosPorPuntaje(l,diferencia);
-                if(l!=null){
+                if(l.esVacia()){
                     data="Los desafios posibles son: "+l.toString();
                 }else{
                     data="Error, no existe un desafio posible para pasar de habitacion";
@@ -85,7 +88,7 @@ public class ethan {
     }
 
     //ejercicio 3
-    public boolean jugarDesafio(Equipo equipo, Desafio elDesafio) {
+    public boolean jugarDesafio(Equipo equipo, Desafio elDesafio) {//ejercicio pide habitacion pero no es necesaria(?)
         boolean exito = revisarCondiciones(equipo, elDesafio);
         if (exito) {
             equipo.setPuntajeHabitacion(equipo.getPuntajeHabitacion() + elDesafio.getPuntaje());
@@ -162,9 +165,22 @@ public class ethan {
             Habitacion habActual =
                 (Habitacion) casona.obtenerInformacion(equipo.getCodigoHabitacion());
             if (habActual != null) {
-                exito = existeArcoDirecto(habActual, habAPasar)
+                exito = casona.existeArcoDirecto(habActual, habAPasar)
                         && equipo.getPuntajeHabitacion() >=
                         mapa.ObtenerEtiqueta(habActual, habAPasar);
+            }
+        }
+        return exito;
+    }
+    public boolean puedeSalir(String nombreEquipo) {
+        boolean exito = false;
+        Equipo equipo = equipos.get(nombreEquipo);
+        if (equipo != null) {
+            Habitacion habActual =
+                    (Habitacion) casona.obtenerInformacion(equipo.getCodigoHabitacion());
+            if (habActual != null) {
+                exito = habActual.isTieneSalida()
+                        && equipo.getPuntajeAcumulado() >= equipo.getPuntajeExigido();
             }
         }
         return exito;
