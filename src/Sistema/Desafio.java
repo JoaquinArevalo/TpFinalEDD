@@ -44,6 +44,20 @@ public class Desafio {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+@Override
+public boolean equals(Object obj) {
+    boolean sonIguales = false;
+    if (this == obj) {
+        sonIguales = true;
+    }
+    else if (obj != null && this.getClass() == obj.getClass()) {
+
+        Desafio otroDesafio = (Desafio) obj;
+        sonIguales = (this.codigoHabitacion == otroDesafio.codigoHabitacion &&
+                this.puntaje == otroDesafio.puntaje);
+    }
+    return sonIguales;
+}
     public String toString() {
         return "Desafio{" +
                 "codigoHabitacion=" + codigoHabitacion +

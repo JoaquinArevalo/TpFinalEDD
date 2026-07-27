@@ -85,4 +85,38 @@ public class joaquin {
         return resuelto;
     }
 
+    public String mostrarSistema(){
+        String resultado = "========== ESTADO ACTUAL DEL SISTEMA ==========\n\n";
+        resultado += "--- ESTRUCTURA DE HABITACIONES (Árbol AVL) ---\n";
+        resultado += casona.toString() + "\n";
+        resultado += "--- MAPA DE LA CASA (Grafo) ---\n";
+        resultado += mapa.toString() + "\n";
+        resultado += "--- EQUIPOS REGISTRADOS(HashMap) ---\n";
+        if(equipos.isEmpty()){
+            resultado += "No hay equipos registrados.\n";
+        } else {
+            for (String nombreEquipo : equipos.keySet()) {
+                resultado += "Clave: [" + nombreEquipo + "] -> Valor: " + this.equipos.get(nombreEquipo).toString() + "\n";
+            }
+        }
+        resultado+= "\n";
+        resultado += "--- DESAFÍOS RESUELTOS POR EQUIPO (HashMap anidado) ---\n";
+        if(desafiosResueltos.isEmpty()){
+            resultado += "No hay desafíos resueltos registrados.\n";
+        } else {
+            for (String nombreEquipo : desafiosResueltos.keySet()) {
+                resultado += "Equipo: [" + nombreEquipo + "] resolvio en: \n";
+                HashMap<Integer, Lista> desafiosHechos = desafiosResueltos.get(nombreEquipo);
+                if(desafiosHechos.isEmpty()){
+                    resultado += "  No hay desafíos resueltos para este equipo.\n";
+                } else {
+                    for (Integer codHabitacion : desafiosHechos.keySet()) {
+                        resultado += "  Habitación: [" + codHabitacion + "] -> Puntajes Desafíos: " + desafiosHechos.get(codHabitacion).toString() + "\n";
+                    }
+                }
+            }
+        }
+        return resultado;
+    }
+
 }
