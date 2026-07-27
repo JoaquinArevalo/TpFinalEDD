@@ -1,7 +1,6 @@
 package Sistema;
 import Sistema.Diccionario.DiccionarioAVL;
 import Sistema.Grafo.Grafo;
-import Sistema.Lista.Lista;
 import java.util.HashMap;
 public class parra {
 
@@ -19,7 +18,7 @@ public class parra {
         boolean exito = false;
         Habitacion hab = (Habitacion) avlHabitaciones.obtenerInformacion(codigo);
 
-        if (hab == null) {
+        if (hab == null && !tieneSalida) {
             exito=true;
             //Crea habitacion , la insera en el Avl y en grafo
             Habitacion habNueva = new Habitacion(codigo, nombre, planta, metros, tieneSalida);
@@ -32,11 +31,23 @@ public class parra {
     public boolean bajaHabitacion(int codigo) {
         boolean exito = false;
         Habitacion hab = (Habitacion) avlHabitaciones.obtenerInformacion(codigo);
-        //Si no es nulo, ni es primera puerta , ni salida  entonces elimina la habitacion
+
+        // Si no es nula, ni es primera puerta , ni es salida
         if (hab != null && codigo != 1 && !hab.isTieneSalida()){
-            exito=true;
-            avlHabitaciones.eliminar(codigo);
-            grafoCasona.eliminarVertice(codigo);
+            
+            // Verificamos si la habitación está ocupada usando for-each 
+            boolean habitacionOcupada = false;
+            for (Equipo eq : hashEquipos.values()) {
+                if (eq.getCodigoHabitacion() == codigo) {
+                    habitacionOcupada = true;
+                }
+            }
+
+            if (!habitacionOcupada) {
+                exito = true;
+                avlHabitaciones.eliminar(codigo);
+                grafoCasona.eliminarVertice(codigo);
+            }
         }  
         return exito;
     }
@@ -60,7 +71,7 @@ public class parra {
         Habitacion hab = (Habitacion) avlHabitaciones.obtenerInformacion(codHabitacion);
 
         //si nignun desafio del avlDesafios de la habitacion tiene el mismo puntaje
-        if (hab == null || hab.getDesafios().obtenerInformacion(puntaje) == null ) {
+        if (hab != null && hab.buscarDesafio(puntaje) == null) {
             exito=true;
             Desafio nuevo = new Desafio(codHabitacion, puntaje, nombre, tipo);
             hab.getDesafios().insertar(puntaje, nuevo);
@@ -77,6 +88,10 @@ public class parra {
             //si existe un desafio con ese puntaje en esa habitacion
             if (encontrado){
                 exito = true;
+                // Lo eliminamos del registro de desafíos resueltos de todos los equipos usando for-each
+                for (HashMap<Integer, Desafio> historialEquipo : desafiosResueltos.values()) {
+                    historialEquipo.remove(puntaje);
+                }
             }
         }
 
@@ -88,7 +103,7 @@ public class parra {
         Habitacion hab = (Habitacion) avlHabitaciones.obtenerInformacion(codHabitacion);
         if (hab != null){
             //buscamos que exista el desafio con ese puntaje 
-            Desafio des = (Desafio) hab.getDesafios().obtenerInformacion(puntajeOriginal);
+            Desafio des = hab.buscarDesafio(puntajeOriginal);
             if (des != null){;
                 exito = true;
                 des.setNombre(nuevoNombre);
