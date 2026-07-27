@@ -6,12 +6,13 @@ import java.util.HashMap;
 
 import Sistema.Diccionario.DiccionarioAVL;
 import Sistema.Grafo.Grafo;
+import Sistema.Lista.Lista;
 
 public class goyo {
     /** 
-    C:\Users\Usuario\Desktop\TPo\TpFinalEDD\casona.txt (goyo)
+    /home/goyo/Escritorio/RepositoriosGit/facultad/EDD/TPO/TpFinalEDD (goyo)
     **/
-    public static void cargarDesdeArchivo(String rutaArchivo, Grafo grafo, DiccionarioAVL habitacionesAVL, HashMap<String, Equipo> equiposHash) {
+    public static void cargarDesdeArchivo(String rutaArchivo, Grafo grafo, DiccionarioAVL habitacionesAVL, HashMap<String, Equipo> equiposHash, HashMap<String, Lista> desafiosResueltos) {
         /**bufferedReader, utiliza buffer(memoria temporal para gestionar el flujo de datos)
         FileReader lee el archivo de teto y almacena los datos en el bufferReader
         **/
@@ -28,7 +29,8 @@ public class goyo {
                 String tipo = datos[0].toUpperCase();
 
                 switch (tipo) {
-                    case "HABITACION":
+                    case "H":
+                        //leer Habitacion
                         int codHab = Integer.parseInt(datos[1]);
                         String nomHab = datos[2];
                         int planta = Integer.parseInt(datos[3]);
@@ -41,18 +43,20 @@ public class goyo {
                         grafo.insertarVertice(codHab);
                         break;
 
-                    case "CONEXION":
-                        String origen = datos[1];
-                        String destino = datos[2];
+                    case "P":
+                        //leer Puertas
+                        int origen = Integer.parseInt(datos[1]);
+                        int destino = Integer.parseInt(datos[2]);
                         int puntajeMin = Integer.parseInt(datos[3]);
                         
                         grafo.insertarArco(origen, destino, puntajeMin);
                         grafo.insertarArco(destino, origen, puntajeMin);
                         break;
 
-                    case "DESAFIO":
-                        int codHabDesafio = Integer.parseInt(datos[1]);
-                        int puntajeDesafio = Integer.parseInt(datos[2]);
+                    case "D":
+                        //leer desafios
+                        int puntajeDesafio = Integer.parseInt(datos[1]);                        
+                        int codHabDesafio = Integer.parseInt(datos[2]);
                         String nomDesafio = datos[3];
                         String tipoDesafio = datos[4];
                         
@@ -65,7 +69,7 @@ public class goyo {
                         }
                         break;
 
-                    case "EQUIPO":
+                    case "E":
                         // EQUIPO;nombre;puntajeExigido;habActual
                         String nomEquipo = datos[1];
                         int puntajeExigido = Integer.parseInt(datos[2]);
@@ -75,6 +79,18 @@ public class goyo {
                         
                         Equipo eq = new Equipo(nomEquipo, puntajeExigido, puntajeAcumulado, codigoHabitacion, puntajeHabitacion);
                         equiposHash.put(nomEquipo, eq);
+                        if (!desafiosResueltos.containsKey(nomEquipo)){
+                            desafiosResueltos.put(nomEquipo,new Lista());
+                        }
+                        Lista listaDesafiosEquipo = desafiosResueltos.get(nomEquipo);
+                        //empiezo en el indice 6 porque es donde empiezan los desafios resueltos
+                        for (int i = 6; i < datos.length; i++) {
+                            String item = datos[i].trim(); // Ej: "(1,20)"
+                            if (!item.isEmpty()) {
+                                // se inserta el (1,20) directo en la lista del equipo
+                                listaDesafiosEquipo.insertar(item, listaDesafiosEquipo.longitud() + 1);
+                            }
+                        }
                         break;
 
                     default:
@@ -84,10 +100,10 @@ public class goyo {
             }
             System.out.println("Carga inicial completada con éxito.");
 
-        } catch (IOException e) {
-            System.err.println("Error al leer el archivo: " + e.getMessage());
-        } catch (NumberFormatException e) {
-            System.err.println("Error en el formato de los números del archivo: " + e.getMessage());
+        } catch (IOException e) {//IOException se activa cuando falla la lectura/escritura
+            System.out.println("Error al leer el archivo: " + e.getMessage());
+        } catch (NumberFormatException e) {//se activa cuando hay un error en la transformacion de texto a numero
+            System.out.println("Error en el formato de los números del archivo: " + e.getMessage());
         }
     }
 }

@@ -1,82 +1,100 @@
-# ==============================================================================
-# ARCHIVO DE CARGA INICIAL - ESCAPE HOUSE
-# Formato Habitacion: HABITACION;codigo;nombre;planta;m2;salidaExterior
-# Formato Conexion:   CONEXION;origen;destino;puntajeMinimo
-# Formato Desafio:    DESAFIO;codHabitacion;puntaje;nombre;tipo
-# Formato Equipo:     EQUIPO;nombre;puntajeExigido;puntajeAcumulado;codHabitacion;puntajeHabitacion
-# ==============================================================================
+# ==========================================
+# CARGA INICIAL: ESCAPE HOUSE 2.0
+# ==========================================
 
-# --- HABITACIONES (10 en total, plantas 0, 1 y 2) ---
-HABITACION;101;Recibidor Principal;0;45.0;false
-HABITACION;102;Biblioteca Oscura;0;30.5;false
-HABITACION;103;Jardin de Invierno;0;50.0;true
-HABITACION;104;Comedor de Gala;0;40.0;false
-HABITACION;201;Dormitorio del Barón;1;35.0;false
-HABITACION;202;Laboratorio Alquímico;1;28.0;false
-HABITACION;203;Sala de Armas;1;32.5;false
-HABITACION;204;Balcon Terraza;1;15.0;true
-HABITACION;301;El Atico Olvidado;2;20.0;false
-HABITACION;302;Observatorio Astronómico;2;25.0;true
+# --- 1. HABITACIONES (H;codigo;nombre;planta;m2;salidaExterior) ---
+# Ordenadas estratégicamente para forzar rotaciones simples y dobles en el AVL principal
+H;10;Dormitorio principal;1;25.5;false
+H;5;Cochera;0;30.0;true
+H;20;Recibidor;0;15.0;true
+H;3;Biblioteca;0;22.0;false
+H;8;Depósito;0;12.0;false
+H;1;Altillo;2;18.0;false
+H;15;Invernadero;0;28.0;true
+H;22;Sala de Juegos;1;35.0;false
+H;24;Sótano;-1;40.0;false
+H;12;Escalera;0;10.0;false
+H;18;Pasillo;0;8.5;false
+H;6;Cocina;0;20.0;false
+H;7;Comedor;0;26.0;false
+H;2;Baño;0;6.5;false
+H;4;Bodega;-1;16.0;false
+H;9;Despensa;0;7.0;false
+H;11;Dormitorio de huéspedes;1;18.5;false
+H;13;Escritorio;1;14.0;false
+H;14;Gimnasio;1;30.0;false
+H;16;Lavadero;0;9.0;true
+H;17;Natatorio;0;50.0;true
+H;19;Quincho;0;45.0;true
+H;21;Sala de Estar;0;24.0;false
+H;23;Sala de Música;1;20.0;false
 
-# --- CONEXIONES ENTRE HABITACIONES (Grafo de la casona) ---
-# Desde el Recibidor (101)
-CONEXION;101;102;10
-CONEXION;101;104;15
-CONEXION;101;201;20
-# Desde la Biblioteca (102)
-CONEXION;102;103;30
-CONEXION;102;202;25
-# Desde el Comedor (104)
-CONEXION;104;103;35
-CONEXION;104;203;20
-# Planta Alta (200s)
-CONEXION;201;202;15
-CONEXION;201;203;15
-CONEXION;202;301;40
-CONEXION;203;204;50
-# Atico y Observatorio (300s)
-CONEXION;301;302;60
-CONEXION;204;302;45
+# --- 2. PUERTAS / ARCOS DEL GRAFO (P;origen;destino;puntajeMinimo) ---
+# Conectan la casa asegurando múltiples caminos para probar los algoritmos del grafo
+P;20;21;10
+P;20;18;15
+P;21;7;20
+P;7;6;20
+P;6;9;10
+P;6;16;30
+P;18;2;10
+P;18;3;25
+P;18;12;15
+P;18;5;40
+P;3;13;30
+P;3;15;50
+P;12;10;35
+P;12;11;30
+P;12;22;40
+P;10;2;15
+P;11;2;15
+P;22;23;30
+P;22;14;35
+P;22;1;50
+P;12;24;40
+P;24;4;20
+P;24;8;25
+P;7;19;60
+P;14;17;70
+P;1;10;20
 
-# --- DESAFIOS POR HABITACION (Clave = puntaje, sin repetir en misma hab) ---
-# Hab 101 - Recibidor
-DESAFIO;101;10;El candelabro torcido;Lógico
-DESAFIO;101;15;La alfombra de números;Matemático
-DESAFIO;101;5;Llave bajo el felpudo;Búsqueda
+# --- 3. DESAFIOS (D;puntaje;codigoHabitacion;nombre;tipo) ---
+# Puntajes desordenados por habitación para generar rotaciones en los sub-árboles AVL
+D;30;20;Acertijo del Cuadro;Lógico
+D;10;20;Llave Escondida;Búsqueda
+D;50;20;Código del Reloj;Matemático
+D;20;21;Crucigrama Antiguo;Letras
+D;40;21;Secuencia de Luces;Ingenio
+D;15;18;Alfombra Sospechosa;Búsqueda
+D;35;18;El Piso Roto;Destreza
+D;25;7;Adivinanza de la Cena;Lógico
+D;45;7;Pesaje de Platos;Matemático
+D;10;6;Receta Secreta;Búsqueda
+D;50;6;Combinación del Horno;Ingenio
+D;30;6;Sopa de Letras Gourmet;Letras
+D;40;3;Libro Faltante;Búsqueda
+D;20;3;Cifra de Cesar;Letras
+D;60;3;Teorema Olvidado;Matemático
+D;15;12;Escescalón Hueco;Búsqueda
+D;35;10;Caja Fuerte;Ingenio
+D;50;10;Diario Íntimo;Letras
+D;25;22;Partida de Ajedrez;Lógico
+D;45;22;Dardo al Blanco;Destreza
+D;15;24;Linterna sin Pilas;Búsqueda
+D;55;24;Engranajes Oxidados;Ingenio
+D;30;1;El Baúl Viejo;Destreza
+D;65;19;El Asador Secreto;Ingenio
+D;70;17;Buceo Profundo;Destreza
 
-# Hab 102 - Biblioteca
-DESAFIO;102;20;El libro sin páginas;Lógico
-DESAFIO;102;25;Código de Dewey invertido;Matemático
-DESAFIO;102;30;La página rasgada;Búsqueda
-
-# Hab 103 - Jardin de Invierno (Tiene salida al exterior)
-DESAFIO;103;15;El enigma de las rosas;Lógico
-DESAFIO;103;35;Estatua alineada al sol;Destreza
-
-# Hab 104 - Comedor
-DESAFIO;104;10;Los cubiertos de plata;Búsqueda
-DESAFIO;104;20;La copa envenenada;Lógico
-
-# Hab 201 - Dormitorio
-DESAFIO;201;15;El reloj de péndulo;Matemático
-DESAFIO;201;25;El cuadro con doble fondo;Búsqueda
-
-# Hab 202 - Laboratorio
-DESAFIO;202;30;Mezcla de pociones;Destreza
-DESAFIO;202;40;El peso de los metales;Matemático
-
-# Hab 203 - Sala de Armas
-DESAFIO;203;20;La espada en la piedra;Destreza
-DESAFIO;203;50;El escudo heráldico;Lógico
-
-# Hab 301 - Atico
-DESAFIO;301;40;El cofre sellado con cadenas;Destreza
-DESAFIO;301;60;El acertijo del fantasma;Lógico
-
-# --- EQUIPOS PARTICIPANTES ---
-# Nombre;Exigido;Acumulado;HabActual;PuntajeEnHab
-EQUIPO;Los Alquimistas;100;0;101;0
-EQUIPO;Mente Maestra;150;45;102;20
-EQUIPO;Buscadores de Tesoros;80;70;103;15
-EQUIPO;Sherlock y Watson;120;30;201;0
-EQUIPO;Escapistas Pro;200;110;301;40
+# --- 4. EQUIPOS (E;nombre;puntajeExigido;puntajeAcumulado;habActual;puntajeHabActual;desafios...) ---
+# Desafíos resueltos separados por comas y paréntesis, justo como lo lee tu bucle for
+E;Los Valientes;300;90;7;25;(20,30);(20,10);(21,20);(21,40);(7,25)
+E;Los Locos Adams;400;50;18;15;(20,10);(20,50);(18,15)
+E;Sherlocks;350;150;3;60;(20,30);(18,15);(18,35);(3,40);(3,20);(3,60)
+E;Escapistas Pro;500;200;22;45;(20,50);(18,35);(12,15);(22,25);(22,45)
+E;Novatos;200;10;20;10;(20,10)
+E;Enigma Team;450;120;6;50;(20,30);(21,20);(7,25);(6,10);(6,50);(6,30)
+E;Los Investigadores;350;110;10;50;(20,10);(18,15);(12,15);(10,35);(10,50)
+E;Caza Misterios;400;140;24;55;(20,30);(18,35);(12,15);(24,15);(24,55)
+E;Aventureros;300;85;1;30;(20,10);(18,15);(12,15);(22,25);(1,30)
+E;Sin Rumbo;250;0;20;0;
