@@ -30,35 +30,35 @@ public class EscapeHouse {
             return res;
         }
 
-    public String mostrarDesafiosResueltos(String nomEquipo) {
-        String resultado = "";  
-        HashMap<Integer, Lista> desafiosHechos = desafiosResueltos.get(nomEquipo);
+public String mostrarDesafiosResueltos(String nomEquipo) {
+    String resultado = "";  
+    HashMap<Integer, Lista> desafiosHechos = desafiosResueltos.get(nomEquipo);
+    if (desafiosHechos != null) {
+        if (!desafiosHechos.isEmpty()) {
+            resultado += "El equipo " + nomEquipo + " resolvió:\n";
+            resultado += "Habitación\tDesafíos\n";
+            for (Integer codHabitacion : desafiosHechos.keySet()) {
+                resultado += "(" + codHabitacion + ")\t\t";
+                Lista desafios = desafiosHechos.get(codHabitacion).clone();
+                while (!desafios.esVacia()) {
+                    resultado += desafios.recuperar(1).toString();
+                    desafios.eliminar(1);
 
-        if (desafiosHechos != null) {
-            if (!desafiosHechos.isEmpty()) {
-                resultado += "El equipo " + nomEquipo + " resolvió:\n";
-                resultado += "Habitación\tPuntaje Desafíos\n";
-                // Itero sobre cada codigo en el hashmap
-                for (Integer codHabitacion : desafiosHechos.keySet()) {
-                    resultado += "(" + codHabitacion + ")\t\t(";
-                    Lista puntajes = desafiosHechos.get(codHabitacion).clone();
-                    while (!puntajes.esVacia()) {
-                        resultado += puntajes.recuperar(1);
-                        puntajes.eliminar(1);
-                        if (!puntajes.esVacia()) {
-                            resultado += ", ";
-                        }
+                    if (!desafios.esVacia()) {
+                        resultado += " | "; 
                     }
-                    resultado += ")\n";
-                }    
-            } else {
-                resultado = "El equipo '" + nomEquipo + "' todavía no resolvió ningún desafío.";
-            }
+                }
+                resultado += "\n";
+            }    
         } else {
-            resultado = "Error: El equipo '" + nomEquipo + "' no está registrado en el sistema.";
+            resultado = "El equipo '" + nomEquipo + "' todavía no resolvió ningún desafío.";
         }
-        return resultado; 
+    } else {
+        resultado = "Error: El equipo '" + nomEquipo + "' no está registrado en el sistema.";
     }
+    
+    return resultado; 
+}
     public String mostrarDesafiosTipo(int codHab, String tipoDesafio, int a, int b) {
         // 1. Inicializamos el String vacío
         String resultado = ""; 
@@ -89,13 +89,13 @@ public class EscapeHouse {
         }
         return resultado;
     }
-    public boolean verificarDesafioResuelto(String nomEquipo, int codHabitacion, int puntajeDesafio) {
+    public boolean verificarDesafioResuelto(String nomEquipo, int codHabitacion, Desafio desafio) {
         boolean resuelto = false;
         HashMap<Integer,Lista> desafiosHechos = desafiosResueltos.get(nomEquipo);
         if(desafiosHechos!= null){
             Lista desafios = desafiosHechos.get(codHabitacion);
             if(desafios!= null){
-                if(desafios.localizar(puntajeDesafio) > 0){
+                if(desafios.localizar(desafio) > 0){
                     resuelto = true;
                 }
             }
