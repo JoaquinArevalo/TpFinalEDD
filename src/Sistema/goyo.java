@@ -83,12 +83,29 @@ public class goyo {
                             desafiosResueltos.put(nomEquipo,new Lista());
                         }
                         Lista listaDesafiosEquipo = desafiosResueltos.get(nomEquipo);
-                        //empiezo en el indice 6 porque es donde empiezan los desafios resueltos
                         for (int i = 6; i < datos.length; i++) {
                             String item = datos[i].trim(); // Ej: "(1,20)"
                             if (!item.isEmpty()) {
-                                // se inserta el (1,20) directo en la lista del equipo
-                                listaDesafiosEquipo.insertar(item, listaDesafiosEquipo.longitud() + 1);
+                                // Eliminamos los paréntesis '(' y ')'
+                                String limpio = item.replace("(", "").replace(")", ""); // Queda "1,20"
+                                
+                                // Separamos por la coma
+                                String[] partes = limpio.split(","); // partes[0] = "1", partes[1] = "20"
+                                
+                                int codigoHab = Integer.parseInt(partes[0].trim());
+                                int puntaje = Integer.parseInt(partes[1].trim());
+                                
+                                Habitacion habBusqueda = (Habitacion) habitacionesAVL.obtenerInformacion(codigoHab);
+                                if(habBusqueda!=null){
+                                    Desafio desBuscado = (Desafio) habBusqueda.getDesafios().obtenerInformacion(puntaje);
+                                    if(desBuscado!=null){
+                                        listaDesafiosEquipo.insertar(desBuscado, listaDesafiosEquipo.longitud()+1);
+                                    }else{
+                                        System.out.println("no se ha encontrado un desafio que otorge: "+ puntaje +" en la Habitacion con el codigo: "+ codigoHab);
+                                    }
+                                }else{
+                                    System.out.println("no se ha encontrado la habitacion con el codigo "+ codigoHab + "para el equipo "+ nomEquipo);
+                                }
                             }
                         }
                         break;
@@ -100,10 +117,10 @@ public class goyo {
             }
             System.out.println("Carga inicial completada con éxito.");
 
-        } catch (IOException e) {//IOException se activa cuando falla la lectura/escritura
-            System.out.println("Error al leer el archivo: " + e.getMessage());
-        } catch (NumberFormatException e) {//se activa cuando hay un error en la transformacion de texto a numero
-            System.out.println("Error en el formato de los números del archivo: " + e.getMessage());
+        } catch (IOException e) {//error al leer/escribir un archivo
+            System.err.println("Error al leer el archivo: " + e.getMessage());
+        } catch (NumberFormatException e) {//error al pasar de text a numero(parsear)
+            System.err.println("Error en el formato de los números del archivo: " + e.getMessage());
         }
     }
 }
