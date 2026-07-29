@@ -101,10 +101,10 @@ public class goyo {
                                     if(desBuscado!=null){
                                         listaDesafiosEquipo.insertar(desBuscado, listaDesafiosEquipo.longitud()+1);
                                     }else{
-                                        System.out.println("no se ha encontrado un desafio que otorge: "+ puntaje +" en la Habitacion con el codigo: "+ codigoHab);
+                                        System.out.println("No se ha encontrado un desafio que otorge: "+ puntaje +" en la Habitacion con el codigo: "+ codigoHab);
                                     }
                                 }else{
-                                    System.out.println("no se ha encontrado la habitacion con el codigo "+ codigoHab + "para el equipo "+ nomEquipo);
+                                    System.out.println("No se ha encontrado la habitacion con el codigo "+ codigoHab + "para el equipo "+ nomEquipo);
                                 }
                             }
                         }

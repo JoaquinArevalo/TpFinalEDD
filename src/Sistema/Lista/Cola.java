@@ -21,7 +21,7 @@ public class Cola {
         if (this.frente == null) {//si esta vacio la cola
             this.frente = nuevo;//el frente apunta al nodo nuevo, frente->[Nuevo]
         } else {
-            this.fin.setEnlace(nuevo);//si no estaba vacio el viejo fin apunta al ultimo agregado(que mas adelante puede ser el frente tambien)
+            this.fin.setEnlace(nuevo);//si no estaba vacio el viejo fin apunta al ultimo agregado(que mas adelante puede ser el frente tambien.)
                                     //frente ->[A]->[Nuevo]
                                     //          ^ 
                                     //         fin

@@ -7,11 +7,11 @@ public class Equipo {
     private int codigoHabitacion;
     private int puntajeHabitacion;
 
-    public Equipo(String nombre, int puntajeExigido, int puntajeAcumulado, int codigoHabitacion, int puntajeHabitacion) {
+    public Equipo(String nombre, int puntajeExigido, int puntajeAcumulado, int codHabitacion, int puntajeHabitacion) {
         this.nombre = nombre;
         this.puntajeExigido = puntajeExigido;
         this.puntajeAcumulado = puntajeAcumulado;
-        this.codigoHabitacion = codigoHabitacion;
+        this.codigoHabitacion = codHabitacion;
         this.puntajeHabitacion = puntajeHabitacion;
     }
 
