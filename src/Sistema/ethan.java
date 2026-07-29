@@ -4,7 +4,7 @@ import Sistema.Diccionario.DiccionarioAVL;
 import Sistema.Lista.Lista;
 import java.util.HashMap;
 import Sistema.Grafo.Grafo;
-import Sistema.EscapeHouse;
+import Sistema.joaquin;
 
 public class ethan {
     //ejercicio 1
