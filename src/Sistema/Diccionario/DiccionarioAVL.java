@@ -155,20 +155,17 @@ public class DiccionarioAVL {
         }
         return res;
     }
-    private void listarRangoAux(Comparable min,Comparable max, Lista lista, NodoAVLDicc aux){
-        if(aux != null){
-            if(aux.getClave().compareTo(min)< 0){
-                listarRangoAux(min,max,lista,aux.getDerecho());
-            }
-            if(aux.getClave().compareTo(max)> 0){
-                listarRangoAux(min,max,lista,aux.getIzquierdo());
-            }
-            if(aux.getClave().compareTo(min)>= 0 && aux.getClave().compareTo(max)<= 0){
+    private void listarRangoAux(Comparable min, Comparable max, Lista lista, NodoAVLDicc aux) {
+        if (aux != null) {
+            if (aux.getClave().compareTo(min) < 0) {
+                listarRangoAux(min, max, lista, aux.getDerecho());
+            } else if (aux.getClave().compareTo(max) > 0) {
+                listarRangoAux(min, max, lista, aux.getIzquierdo());
+            } else {
+                listarRangoAux(min, max, lista, aux.getIzquierdo());
                 lista.insertar(aux.getDato(), 1);
-                listarRangoAux(min,max,lista,aux.getIzquierdo());
-                listarRangoAux(min,max,lista,aux.getDerecho());
+                listarRangoAux(min, max, lista, aux.getDerecho());
             }
-        
         }
     }
 

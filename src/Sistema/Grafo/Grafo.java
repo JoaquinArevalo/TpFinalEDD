@@ -179,126 +179,125 @@ public class Grafo {
     // Métodos de Solución a los Problemas del TP
     // ─────────────────────────────────────────────
 
-    // 1. habitacionesContiguas
-    public Lista habitacionesContiguas(Object codigoHab) {
+// 1. obtenerAdyacentes
+    public Lista obtenerAdyacentes(Object vertice) {
         Lista resultado = new Lista();
-        NodoVert vert = ubicaVert(codigoHab);
+        NodoVert vert = ubicaVert(vertice);
+        
         if (vert != null) {
             NodoAdy ady = vert.getPrimerAdy();
             while (ady != null) {
-                String info = "Habitación contigua: " + ady.getVertice().getElem() 
-                            + " | Puntaje requerido: " + ady.getEtiqueta();
-                resultado.insertar(info, 1);
+                String info = ady.getVertice().getElem() + " (Costo: " + ady.getEtiqueta() + ")";
+                resultado.insertar(info, resultado.longitud() + 1);
                 ady = ady.getSigAdyacente();
             }
         }
-        return resultado;
+        return resultado; 
     }
 
-    // 2. esPosibleLlegar
-    public boolean esPosibleLlegar(Object hab1, Object hab2, int k) {
-        NodoVert[] arr = ubicarVertOrigDestino(hab1, hab2);
+   // 2. esPosibleLlegar
+    public boolean esPosibleLlegar(Object origen, Object destino, int limiteCosto) {
         boolean posible = false;
+        NodoVert[] arr = ubicarVertOrigDestino(origen, destino);
+        
         if (arr[0] != null && arr[1] != null) {
-            posible = esPosibleLlegarAux(arr[0], arr[1], k, 0, new Lista());
+            posible = esPosibleLlegarAux(arr[0], arr[1], limiteCosto, 0, new Lista());
         }
-        return posible;
+        return posible; 
     }
 
-    private boolean esPosibleLlegarAux(NodoVert vert, NodoVert destino, int k, int puntosAcumulados, Lista visitados) {
+    private boolean esPosibleLlegarAux(NodoVert vert, NodoVert destino, int limiteCosto, int costoAcumulado, Lista caminoActual) {
         boolean encontrado = false;
+        
         if (vert == destino) {
-            encontrado = (puntosAcumulados <= k);
-        } else if (puntosAcumulados < k) { 
-            visitados.insertar(vert, visitados.longitud() + 1);
+            encontrado = (costoAcumulado <= limiteCosto);
+        } else if (costoAcumulado < limiteCosto) {
+            caminoActual.insertar(vert.getElem(), caminoActual.longitud() + 1);
             NodoAdy ady = vert.getPrimerAdy();
+            
             while (ady != null && !encontrado) {
                 NodoVert sig = ady.getVertice();
-                if (visitados.localizar(sig) < 0) {
-                    encontrado = esPosibleLlegarAux(sig, destino, k, puntosAcumulados + ady.getEtiqueta(), visitados);
+                // Verifico si ya lo visitamos buscando su elemento en la lista
+                if (caminoActual.localizar(sig.getElem()) < 0) {
+                    encontrado = esPosibleLlegarAux(sig, destino, limiteCosto, costoAcumulado + (int)ady.getEtiqueta(), caminoActual);
                 }
                 ady = ady.getSigAdyacente();
             }
-            visitados.eliminar(visitados.longitud());
+    
+            caminoActual.eliminar(caminoActual.longitud());
         }
         return encontrado;
     }
-
-    // 3. minimoPuntaje 
-    public String minimoPuntaje(Object hab1, Object hab2) {
-        String resultado;
-        NodoVert[] arr = ubicarVertOrigDestino(hab1, hab2);
-        Lista mejorCamino = new Lista();
+// 3. caminoMenorCosto
+    public boolean caminoMenorCosto(Object origen, Object destino, Lista mejorCamino, int[] minCosto) {
+        boolean exito = false;
+        NodoVert[] arr = ubicarVertOrigDestino(origen, destino);
+        
         if (arr[0] != null && arr[1] != null) {
-            int[] minPuntaje = {Integer.MAX_VALUE};
-            minimoPuntajeAux(arr[0], arr[1], new Lista(), mejorCamino, new Lista(), 0, minPuntaje);
-            if (minPuntaje[0] == Integer.MAX_VALUE) {
-                resultado = "No hay caminos disponibles entre las habitaciones.";
-            } else {
-                resultado = "Mínimo puntaje absoluto a acumular: " + minPuntaje[0] + " | Camino: " + mejorCamino.toString();
+            minCosto[0] = Integer.MAX_VALUE; // Inicializo al máximo posible
+            caminoMenorCostoAux(arr[0], arr[1], new Lista(), mejorCamino, 0, minCosto);
+            
+            // Si el costo cambió, es porque se encontro al menos un camino
+            if (minCosto[0] != Integer.MAX_VALUE) {
+                exito = true;
             }
-        }else{
-            resultado = "Al menos una de las habitaciones no existe en el grafo.";
         }
-        return resultado;
+        return exito; 
     }
 
-    private void minimoPuntajeAux(NodoVert vert, NodoVert destino, Lista caminoActual, Lista mejorCamino, 
-                                  Lista visitados, int puntajeActual, int[] minPuntaje) {
-        visitados.insertar(vert, 1);
+    private void caminoMenorCostoAux(NodoVert vert, NodoVert destino, Lista caminoActual, Lista mejorCamino, int costoActual, int[] minCosto) {
         caminoActual.insertar(vert.getElem(), caminoActual.longitud() + 1);
 
         if (vert == destino) {
-            if (puntajeActual < minPuntaje[0]) {
-                minPuntaje[0] = puntajeActual;
+            if (costoActual < minCosto[0]) {
+                minCosto[0] = costoActual;
                 copiarLista(caminoActual, mejorCamino);
             }
-        } else if (puntajeActual < minPuntaje[0]) { 
+        } else if (costoActual < minCosto[0]) {
             NodoAdy ady = vert.getPrimerAdy();
             while (ady != null) {
                 NodoVert sig = ady.getVertice();
-                if (visitados.localizar(sig) < 0) {
-                    minimoPuntajeAux(sig, destino, caminoActual, mejorCamino, visitados, puntajeActual + ady.getEtiqueta(), minPuntaje);
+                if (caminoActual.localizar(sig.getElem()) < 0) {
+                    caminoMenorCostoAux(sig, destino, caminoActual, mejorCamino, costoActual + (int)ady.getEtiqueta(), minCosto);
                 }
                 ady = ady.getSigAdyacente();
             }
         }
-        visitados.eliminar(visitados.longitud());
         caminoActual.eliminar(caminoActual.longitud());
     }
 
     // 4. sinPasarPor
-    public Lista sinPasarPor(Object hab1, Object hab2, Object hab3, int P) {
-        NodoVert[] arr = ubicarVertOrigDestino(hab1, hab2);
-        NodoVert evitar = ubicaVert(hab3);
-        Lista caminosValidos = new Lista();
+    public Lista caminosSinPasarPor(Object origen, Object destino, Object evitar, int limiteCosto) {
+        Lista todosLosCaminos = new Lista();
+        NodoVert[] arr = ubicarVertOrigDestino(origen, destino);
+        NodoVert vertEvitar = ubicaVert(evitar);
 
-        if (arr[0] != null && arr[1] != null && evitar != null) {
-            sinPasarPorAux(arr[0], arr[1], evitar, P, 0, new Lista(), new Lista(), caminosValidos);
+        if (arr[0] != null && arr[1] != null && vertEvitar != null) {
+            caminosSinPasarPorAux(arr[0], arr[1], vertEvitar, limiteCosto, 0, new Lista(), todosLosCaminos);
         }
-        return caminosValidos;
+        return todosLosCaminos;
     }
 
-    private void sinPasarPorAux(NodoVert vert, NodoVert destino, NodoVert evitar, int maxPuntos, 
-                                int puntosAcumulados, Lista caminoActual, Lista visitados, Lista todosLosCaminos) {
-        if (vert != evitar && puntosAcumulados <= maxPuntos) {
-            visitados.insertar(vert, 1);
+    private void caminosSinPasarPorAux(NodoVert vert, NodoVert destino, NodoVert evitar, int limiteCosto,
+                                    int costoAcumulado, Lista caminoActual, Lista todosLosCaminos) {
+        if (vert != evitar && costoAcumulado <= limiteCosto) {
             caminoActual.insertar(vert.getElem(), caminoActual.longitud() + 1);
 
             if (vert == destino) {
-                String info = "Ruta válida: " + caminoActual.toString() + " | Puntos totales requeridos: " + puntosAcumulados;
-                todosLosCaminos.insertar(info, 1);
+                Lista caminoValido = new Lista();
+                copiarLista(caminoActual, caminoValido);
+                todosLosCaminos.insertar(caminoValido, todosLosCaminos.longitud() + 1);
             } else {
                 NodoAdy ady = vert.getPrimerAdy();
                 while (ady != null) {
                     NodoVert sig = ady.getVertice();
-                    if (visitados.localizar(sig) < 0) {
-                        sinPasarPorAux(sig, destino, evitar, maxPuntos, puntosAcumulados + ady.getEtiqueta(), caminoActual, visitados, todosLosCaminos);
+
+                    if (caminoActual.localizar(sig.getElem()) < 0) {
+                        caminosSinPasarPorAux(sig, destino, evitar, limiteCosto, costoAcumulado + (int) ady.getEtiqueta(),caminoActual, todosLosCaminos);
                     }
                     ady = ady.getSigAdyacente();
                 }
             }
-            visitados.eliminar(visitados.longitud());
             caminoActual.eliminar(caminoActual.longitud());
         }
     }
