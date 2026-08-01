@@ -8,6 +8,54 @@ public class EscapeHouse {
     private DiccionarioAVL casona; // Habitaciones
     private HashMap<String, Equipo> equipos; // Equipos
     private HashMap<String, HashMap<Integer, Lista>> desafiosResueltos; // Desafios resueltos por equipo
+    
+
+    //Consultas sobre habitaciones
+    public String mostrarHabitacion(Integer habOrigen) {
+        String resultado = "";
+        // Verifico en el Diccionario si la habitación existe
+        if (casona.contiene(habOrigen)) {
+            resultado = casona.obtenerInformacion(habOrigen).toString();
+        } else {
+            resultado = "Error: La habitación " + habOrigen + " no existe en el mapa.";
+        }
+        return resultado;
+    }
+
+
+    public String sinPasarPor(Integer habOrigen, Integer habDestino, int cantidadPuntaje, Integer habProhibida) {
+        String resultado = "";
+        // Verifico en el Diccionario si las habitaciones existen
+        if(casona.contiene(habOrigen) && casona.contiene(habDestino) && casona.contiene(habProhibida)) {
+            resultado+= "Caminos desde la habitación " + habOrigen + " hasta la habitación " + habDestino +
+                        " sin pasar por la habitación " + habProhibida + " y con puntaje máximo de " + cantidadPuntaje + ":\n";
+            resultado= mapa.caminosSinPasarPor(habOrigen, habDestino, cantidadPuntaje, habProhibida).toString();
+        } else {
+            resultado = "Error: Al menos una de las habitaciones ingresadas no existe en el mapa.";
+        }
+        return resultado;
+    }
+
+
+    public String habitacionesContiguas(Integer habOrigen) {
+        String resultado = "";
+        // Verifico en el Diccionario si la habitación existe
+        if (casona.contiene(habOrigen)) {
+            resultado = mapa.obtenerAdyacentes(habOrigen).toString();
+        } else {
+            resultado = "Error: La habitación " + habOrigen + " no existe en el mapa.";
+        }
+        return resultado;
+    }
+    
+    public boolean esPosibleLlegar(Integer habOrigen, Integer habDestino, int cantidadPuntaje) {
+        boolean resultado = false;
+        // Verifico en el Diccionario si las habitaciones existen
+        if (casona.contiene(habOrigen) && casona.contiene(habDestino)) {
+            resultado = mapa.esPosibleLlegar(habOrigen, habDestino, cantidadPuntaje);
+        }
+        return resultado;
+    }
 
     public String consultarMinimoPuntaje(Integer habOrigen, Integer habDestino) {
         String resultado = "";
@@ -31,7 +79,7 @@ public class EscapeHouse {
         
         return resultado;
     }
-
+//Consultas sobre desafios
     public String mostrarDesafio(int numeroDesafio, int numeroHabitacion){
             String res = "";
             Habitacion hab = (Habitacion) casona.obtenerInformacion(numeroHabitacion);

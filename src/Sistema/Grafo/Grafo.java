@@ -429,17 +429,16 @@ public String toString() {
     String resultado = "";
     NodoVert aux = this.inicio;
     
-    // Recorremos la lista de vértices
+    // Recorro la lista de vértices
     while (aux != null) {
         resultado += "Habitación: " + aux.getElem().toString() + " -> Puertas hacia: ";
-        NodoAdy ady = aux.getPrimerAdy(); // Asumiendo que así obtienes el primer adyacente
+        NodoAdy ady = aux.getPrimerAdy();
         
         if (ady == null) {
             resultado += "Ninguna (Sin salida)";
         } else {
-            // Recorremos la lista de adyacentes de este vértice
+            // Recorro la lista de adyacentes de este vértice
             while (ady != null) {
-                // Se asume que el grafo está etiquetado con el puntaje exigido
                 resultado += "[" + ady.getVertice().getElem().toString() + " (Exige: " + ady.getEtiqueta() + " pts)] ";
                 ady = ady.getSigAdyacente();
             }
@@ -452,7 +451,7 @@ public String toString() {
     public int ObtenerEtiqueta(Object hab, Object habABuscar){
         NodoVert[] arr = ubicarVertOrigDestino(hab, habABuscar);
         int i=-1;
-        NodoAdy puertas=arr[0].getPrimerAdy();
+        NodoAdy puertas=arr[0].getPrimerAdy();//y si arr[0] es null? no se puede hacer getPrimerAdy de null
         if( arr[0] != null && arr[1] != null){
             while(i == -1 && puertas!=null){//las puertas no pueden ser negativas
                 if(puertas.getVertice()==arr[1]){
