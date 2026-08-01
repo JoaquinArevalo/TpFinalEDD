@@ -54,4 +54,18 @@ public class Equipo {
     public void setPuntajeHabitacion(int puntajeHabitacion) {
         this.puntajeHabitacion = puntajeHabitacion;
     }
+    @Override
+    public String toString() {
+        String resultado = "";
+
+        resultado += "Equipo{";
+        resultado += "nombre='" + this.nombre + "'";
+        resultado += ", puntajeExigido=" + this.puntajeExigido;
+        resultado += ", puntajeAcumulado=" + this.puntajeAcumulado;
+        resultado += ", codigoHabitacion=" + this.codigoHabitacion;
+        resultado += ", puntajeHabitacion=" + this.puntajeHabitacion;
+        resultado += "}";
+
+        return resultado;
+    }
 }

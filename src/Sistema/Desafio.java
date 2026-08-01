@@ -60,10 +60,10 @@ public boolean equals(Object obj) {
 }
     public String toString() {
         return "Desafio{" +
-                "codigoHabitacion=" + codigoHabitacion +
-                ", puntaje=" + puntaje +
-                ", nombre='" + nombre + '\'' +
-                ", tipo='" + tipo + '\'' +
+                "codigoHabitacion=" + this.codigoHabitacion +
+                ", puntaje=" + this.puntaje +
+                ", nombre='" + this.nombre + '\'' +
+                ", tipo='" + this.tipo + '\'' +
                 '}';
     }
 }

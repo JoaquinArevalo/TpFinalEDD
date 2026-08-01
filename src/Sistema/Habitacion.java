@@ -77,11 +77,11 @@ public class Habitacion {
     @Override
     public String toString() {
         return "Habitacion{" +
-                "codigo=" + codigo +
-                ", nombre='" + nombre + '\'' +
-                ", planta=" + planta +
-                ", metrosCuadrados=" + metrosCuadrados +
-                ", tieneSalida=" + tieneSalida +
+                "codigo=" + this.codigo +
+                ", nombre='" + this.nombre + '\'' +
+                ", planta=" + this.planta +
+                ", metrosCuadrados=" + this.metrosCuadrados +
+                ", tieneSalida=" + this.tieneSalida +
                 '}';
     }
 }

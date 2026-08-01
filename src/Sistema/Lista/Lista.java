@@ -94,17 +94,24 @@ public class Lista {
         }
         return unLista;
     }
-    public String toString(){
-        String texto="[";
-        Nodo aux=this.cabecera;
-        while(aux!=null){
-            texto+=aux.getElem();
-            if(aux.getEnlace()!=null){
-                texto+=",";
+    @Override
+    public String toString() {
+        String resultado = "[";
+        Nodo auxiliar = this.cabecera;
+
+        while (auxiliar != null) {
+            if (auxiliar.getElem() == null) {
+                resultado += "null";
+            } else {
+                resultado += auxiliar.getElem().toString();
             }
-            aux=aux.getEnlace();
+            auxiliar = auxiliar.getEnlace();
+            if (auxiliar != null) {
+                resultado += ", ";
+            }
         }
-        return texto +"]";
+        resultado += "]";
+        return resultado;
     }
 
     //propios del tipo ej4

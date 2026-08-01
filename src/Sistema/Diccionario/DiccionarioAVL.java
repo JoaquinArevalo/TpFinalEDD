@@ -168,29 +168,32 @@ public class DiccionarioAVL {
             }
         }
     }
+    
 
+    @Override
     public String toString() {
-        return (this.raiz == null) ? "Diccionario vacío" : generarStringArbol(this.raiz, "");
+        String resultado = (this.raiz == null) ? "Diccionario vacio" : generarStringArbol(this.raiz, "");
+        return resultado;
     }
 
     private String generarStringArbol(NodoAVLDicc nodo, String prefijo) {
-    // Inicializamos el resultado vacío
-    String resultado = "";
-    // Solo procesamos si el nodo actual no es nulo
-    if (nodo != null) {
-        // 1. Recorremos primero el hijo derecho (se imprime arriba)
-        resultado += generarStringArbol(nodo.getDerecho(), prefijo + "        ");
-        // 2. Calculamos el balance actual para mostrarlo
-        int altIzq = (nodo.getIzquierdo() != null) ? nodo.getIzquierdo().getAltura() : -1;
-        int altDer = (nodo.getDerecho() != null) ? nodo.getDerecho().getAltura() : -1;
-        int balance = altIzq - altDer;
-        // 3. Imprimimos el nodo actual con su información clave
-        resultado += prefijo + "|-- " + nodo.getClave() + " (Alt: " + nodo.getAltura() + ", Bal: " + balance + ")\n";
-        // 4. Recorremos el hijo izquierdo (se imprime abajo)
-        resultado += generarStringArbol(nodo.getIzquierdo(), prefijo + "        ");
+        String resultado = "";
+
+        if (nodo != null) {
+            int altIzq = (nodo.getIzquierdo() != null) ? nodo.getIzquierdo().getAltura() : -1;
+            int altDer = (nodo.getDerecho() != null) ? nodo.getDerecho().getAltura() : -1;
+            String datoTexto = (nodo.getDato() != null) ? nodo.getDato().toString() : "null";
+
+            resultado = generarStringArbol(nodo.getDerecho(), prefijo + "        ") +
+                        prefijo + "|-- " + nodo.getClave() +
+                        " (Alt: " + nodo.getAltura() +
+                        ", Bal: " + (altIzq - altDer) +
+                        ") -> " + datoTexto + "\n" +
+                        generarStringArbol(nodo.getIzquierdo(), prefijo + "        ");
+        }
+
+        return resultado;
     }
-    return resultado;
-}
     public Lista listarInorden() {//el mas prolijo para un diccionarioAvl porque quedan ordenados por puntaje
         Lista lis = new Lista();
         listarInordenAux(this.raiz, lis);

@@ -421,33 +421,39 @@ public class Grafo {
     }
 
     @Override
-public String toString() {
-    if (this.inicio == null) {
-        return "El grafo de la casa está vacío.";
-    }
-    
-    String resultado = "";
-    NodoVert aux = this.inicio;
-    
-    // Recorro la lista de vértices
-    while (aux != null) {
-        resultado += "Habitación: " + aux.getElem().toString() + " -> Puertas hacia: ";
-        NodoAdy ady = aux.getPrimerAdy();
-        
-        if (ady == null) {
-            resultado += "Ninguna (Sin salida)";
+    public String toString() {
+        String resultado = "";
+        NodoVert verticeActual = this.inicio;
+        int numVertice = 1;
+
+        if (verticeActual == null) {
+            resultado = "El grafo esta vacio.\n";
         } else {
-            // Recorro la lista de adyacentes de este vértice
-            while (ady != null) {
-                resultado += "[" + ady.getVertice().getElem().toString() + " (Exige: " + ady.getEtiqueta() + " pts)] ";
-                ady = ady.getSigAdyacente();
+            while (verticeActual != null) {
+                resultado += "VERTICE[" + numVertice + "] = " + verticeActual.getElem().toString() + "\n";
+
+                NodoAdy adyacenteActual = verticeActual.getPrimerAdy();
+                int numAdy = 1;
+
+                if (adyacenteActual == null) {
+                    resultado += "    Sin habitaciones adyacentes.\n";
+                } else {
+                    while (adyacenteActual != null) {
+                        resultado += "    ADY[" + numAdy + "] -> " + adyacenteActual.getVertice().getElem().toString() + 
+                                    " | Puntaje exigido: " + adyacenteActual.getEtiqueta() + "\n";
+                        
+                        adyacenteActual = adyacenteActual.getSigAdyacente();
+                        numAdy++;
+                    }
+                }
+
+                verticeActual = verticeActual.getSigVertice();
+                numVertice++;
             }
         }
-        resultado += "\n";
-        aux = aux.getSigVertice(); // Pasamos al siguiente vértice del grafo
+
+        return resultado;
     }
-    return resultado;
-}
     public int ObtenerEtiqueta(Object hab, Object habABuscar){
         NodoVert[] arr = ubicarVertOrigDestino(hab, habABuscar);
         int i=-1;
