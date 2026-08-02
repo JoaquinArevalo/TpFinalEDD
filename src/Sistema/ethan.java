@@ -25,27 +25,31 @@ public class ethan {
         String data="";
         if(equipo != null){
             Habitacion habEquipoParado=(Habitacion) casona.obtenerInformacion(equipo.getCodigoHabitacion());
-            boolean adyacente=mapa.existeArcoDirecto(habEquipoParado,hab);
-            if(adyacente){
-                int diferencia=mapa.ObtenerEtiqueta(habEquipoParado,hab)-equipo.getPuntajeHabitacion();
-                if(diferencia<=0){
-                    data="El equipo puede pasar a la habitacion, no necesita completar ningun desafio";
-                }else{
-                    HashMap<Integer, Lista> des = desafiosResueltos.get(equipo.getNombre());
-                    Lista aux = null;
-                    if(des != null){
-                        aux = des.get(equipo.getCodigoHabitacion());
-                    }
-                    Lista l=eliminarDesafiosRealizados(habEquipoParado,aux);
-                    Lista filtrados=filtrarDesafiosPorPuntaje(l,diferencia);
-                    if(!filtrados.esVacia()){
-                        data="Los desafios posibles son: "+filtrados.toString();
+            if(habEquipoParado!=null && hab!=null){
+            boolean adyacente=mapa.existeArco(habEquipoParado.getCodigo(),hab.getCodigo());
+                if(adyacente){
+                    int diferencia=mapa.ObtenerEtiqueta(habEquipoParado.getCodigo(),hab.getCodigo())-equipo.getPuntajeHabitacion();
+                    if(diferencia<=0){
+                        data="El equipo puede pasar a la habitacion, no necesita completar ningun desafio";
                     }else{
-                        data="Error, no existe un desafio posible para pasar de habitacion";
+                        HashMap<Integer, Lista> des = desafiosResueltos.get(equipo.getNombre());
+                        Lista aux = null;
+                        if(des != null){
+                            aux = des.get(equipo.getCodigoHabitacion());
+                        }
+                        Lista l=eliminarDesafiosRealizados(habEquipoParado,aux);
+                        Lista filtrados=filtrarDesafiosPorPuntaje(l,diferencia);
+                        if(!filtrados.esVacia()){
+                            data="Los desafios posibles son: "+filtrados.toString();
+                        }else{
+                            data="Error, no existe un desafio posible para pasar de habitacion";
+                        }
                     }
+                }else{
+                    data="La habitacion no es adyacente al equipo";
                 }
             }else{
-                data="La habitacion no es adyacente al equipo";
+                data="Error una de las habitaciones esta vacia";
             }
         }
         return data;
@@ -216,9 +220,9 @@ public class ethan {
             Habitacion habActual =
                 (Habitacion) casona.obtenerInformacion(equipo.getCodigoHabitacion());
             if (habActual != null) {
-                exito = mapa.existeArcoDirecto(habActual, habAPasar)
+                exito = mapa.existeArco(habActual.getCodigo(), habAPasar.getCodigo())
                         && equipo.getPuntajeHabitacion() >=
-                        mapa.ObtenerEtiqueta(habActual, habAPasar);
+                        mapa.ObtenerEtiqueta(habActual.getCodigo(), habAPasar.getCodigo());
             }
         }
         return exito;
