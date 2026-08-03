@@ -1,6 +1,10 @@
 package Sistema;
 import Sistema.Diccionario.DiccionarioAVL;
 import Sistema.Grafo.Grafo;
+import Sistema.Grafo.NodoAdy;
+import Sistema.Grafo.NodoVert;
+import Sistema.Lista.Lista;
+
 import java.util.HashMap;
 public class parra {
 
@@ -170,5 +174,143 @@ public class parra {
 
     //PUNTO 3 : CONSULTAS SOBRE HABITACIONES 
 
+    //1. mostrar habitacion
+    public String mostrarHabitacion(int codigo) {
+        // Lo buscamos en el avl
+        Habitacion hab = (Habitacion) avlHabitaciones.obtenerInformacion(codigo);
+
+        if (hab != null) {
+            return hab.toString(); 
+        } else {
+            return "La habitación: " + codigo + " no existe.";
+        }
+    }
+
+    // 2. habitacionesContiguas
+    public Lista habitacionesContiguas(Object vertice) {
+        Lista resultado = new Lista();
+        NodoVert vert = ubicaVert(vertice);
+        
+        if (vert != null) {
+            NodoAdy ady = vert.getPrimerAdy();
+            while (ady != null) {
+                String info = ady.getVertice().getElem() + " (Costo: " + ady.getEtiqueta() + ")";
+                resultado.insertar(info, resultado.longitud() + 1);
+                ady = ady.getSigAdyacente();
+            }
+        }
+        return resultado; 
+    }
+
+   // 3. esPosibleLlegar
+    public boolean esPosibleLlegar(Object origen, Object destino, int limiteCosto) {
+        boolean posible = false;
+        NodoVert[] arr = ubicarVertOrigDestino(origen, destino);
+        
+        if (arr[0] != null && arr[1] != null) {
+            posible = esPosibleLlegarAux(arr[0], arr[1], limiteCosto, 0, new Lista());
+        }
+        return posible; 
+    }
+
+    private boolean esPosibleLlegarAux(NodoVert vert, NodoVert destino, int limiteCosto, int costoAcumulado, Lista caminoActual) {
+        boolean encontrado = false;
+        
+        if (vert == destino) {
+            encontrado = (costoAcumulado <= limiteCosto);
+        } else if (costoAcumulado < limiteCosto) {
+            caminoActual.insertar(vert.getElem(), caminoActual.longitud() + 1);
+            NodoAdy ady = vert.getPrimerAdy();
+            
+            while (ady != null && !encontrado) {
+                NodoVert sig = ady.getVertice();
+                // Verifico si ya lo visitamos buscando su elemento en la lista
+                                if (caminoActual.localizar(sig.getElem()) < 0) {
+                                    encontrado = esPosibleLlegarAux(sig, destino, limiteCosto, costoAcumulado + (int)ady.getEtiqueta(), caminoActual);
+                                }
+                ady = ady.getSigAdyacente();
+            }
     
-}
+            caminoActual.eliminar(caminoActual.longitud());
+        }
+        return encontrado;
+    }
+    // 4. minimoPuntaje
+    public String minimoPuntaje(Object origen, Object destino) {
+        
+        String resultado = "No existe un camino posible para llegar de " + origen + " a " + destino + ".";
+        NodoVert[] arr = ubicarVertOrigDestino(origen, destino);
+
+        if (arr[0] != null && arr[1] != null) {
+            Lista mejorCamino = new Lista();
+            int[] minCosto = new int[1];
+            minCosto[0] = Integer.MAX_VALUE; 
+
+            minimoPuntajeAux(arr[0], arr[1], new Lista(), mejorCamino, 0, minCosto);
+            
+            // Armamos la respuesta si se encontró al menos un camino (el costo bajó)
+            if (minCosto[0] != Integer.MAX_VALUE) {
+                resultado = "Para ir de " + origen + " a " + destino + " el mínimo puntaje es: " + minCosto[0] + ".\n" +
+                            "El camino a seguir es: " + mejorCamino.toString();
+            }
+        }
+        return resultado;
+    }
+
+    private void minimoPuntajeAux(NodoVert vert, NodoVert destino, Lista caminoActual, Lista mejorCamino, int costoActual, int[] minCosto) {
+        caminoActual.insertar(vert.getElem(), caminoActual.longitud() + 1);
+
+        if (vert == destino) {
+            if (costoActual < minCosto[0]) {    
+                minCosto[0] = costoActual;
+                copiarLista(caminoActual, mejorCamino);
+            }
+        } else if (costoActual < minCosto[0]) {
+            NodoAdy ady = vert.getPrimerAdy();
+            while (ady != null) {
+                NodoVert sig = ady.getVertice();
+                if (caminoActual.localizar(sig.getElem()) < 0) {
+                    minimoPuntajeAux(sig, destino, caminoActual, mejorCamino, costoActual + (int)ady.getEtiqueta(), minCosto);
+                }
+                ady = ady.getSigAdyacente();
+            }
+        }
+        caminoActual.eliminar(caminoActual.longitud());
+    }
+
+    // 4. sinPasarPor
+    public Lista sinPasarPor(Object origen, Object destino, Object evitar, int limiteCosto) {
+        Lista todosLosCaminos = new Lista();
+        NodoVert[] arr = ubicarVertOrigDestino(origen, destino);
+        NodoVert vertEvitar = ubicaVert(evitar);
+
+        if (arr[0] != null && arr[1] != null && vertEvitar != null) {
+            sinPasarPorAux(arr[0], arr[1], vertEvitar, limiteCosto, 0, new Lista(), todosLosCaminos);
+        }
+        return todosLosCaminos;
+    }
+
+    private void sinPasarPorAux(NodoVert vert, NodoVert destino, NodoVert evitar, int limiteCosto,
+                                    int costoAcumulado, Lista caminoActual, Lista todosLosCaminos) {
+        if (vert != evitar && costoAcumulado <= limiteCosto) {
+            caminoActual.insertar(vert.getElem(), caminoActual.longitud() + 1);
+
+            if (vert == destino) {
+                Lista caminoValido = new Lista();
+                copiarLista(caminoActual, caminoValido);
+                todosLosCaminos.insertar(caminoValido, todosLosCaminos.longitud() + 1);
+            } else {
+                NodoAdy ady = vert.getPrimerAdy();
+                while (ady != null) {
+                    NodoVert sig = ady.getVertice();
+
+                    if (caminoActual.localizar(sig.getElem()) < 0) {
+                        sinPasarPorAux(sig, destino, evitar, limiteCosto, costoAcumulado + (int) ady.getEtiqueta(),caminoActual, todosLosCaminos);
+                    }
+                    ady = ady.getSigAdyacente();
+                }
+            }
+            caminoActual.eliminar(caminoActual.longitud());
+        }
+    }
+    }
