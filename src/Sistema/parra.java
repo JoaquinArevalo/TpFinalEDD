@@ -18,7 +18,7 @@ public class parra {
         boolean exito = false;
         Habitacion hab = (Habitacion) avlHabitaciones.obtenerInformacion(codigo);
 
-        if (hab == null && !tieneSalida) {
+        if (hab == null && !tieneSalida && codigo != 1) {
             exito=true;
             //Crea habitacion , la insera en el Avl y en grafo
             Habitacion habNueva = new Habitacion(codigo, nombre, planta, metros, tieneSalida);
@@ -33,7 +33,7 @@ public class parra {
         Habitacion hab = (Habitacion) avlHabitaciones.obtenerInformacion(codigo);
 
         // Si no es nula, ni es primera puerta , ni es salida
-        if (hab != null && codigo != 1 && !hab.isTieneSalida()){
+        if (hab != null && codigo != 1 && !hab.isTieneSalida() && hab.getDesafios().esVacio()){
             
             // Verificamos si la habitación está ocupada usando for-each 
             boolean habitacionOcupada = false;
@@ -55,7 +55,7 @@ public class parra {
     public boolean modificarHabitacion(int codigo, String nuevoNombre, int nuevaPlanta, double nuevosMetros) {
         boolean exito = false;
         Habitacion hab = (Habitacion) avlHabitaciones.obtenerInformacion(codigo);
-        if(hab !=null){
+        if(hab != null && !hab.isTieneSalida() && codigo != 1 ){
             exito=true;
             hab.setNombre(nuevoNombre);
             hab.setPlanta(nuevaPlanta);
@@ -80,23 +80,32 @@ public class parra {
     }
 
     public boolean bajaDesafio(int codHabitacion, int puntaje) {
-        boolean exito = false;
-        Habitacion hab = (Habitacion) avlHabitaciones.obtenerInformacion(codHabitacion);
+    boolean exito = false;
+    Habitacion hab = (Habitacion) avlHabitaciones.obtenerInformacion(codHabitacion);
 
-        if (hab != null) {
-            boolean encontrado = hab.getDesafios().eliminar(puntaje);
-            //si existe un desafio con ese puntaje en esa habitacion
-            if (encontrado){
-                exito = true;
-                // Lo eliminamos del registro de desafíos resueltos de todos los equipos usando for-each
-                for (HashMap<Integer, Desafio> historialEquipo : desafiosResueltos.values()) {
+    if (hab != null) {
+        // Borramos el desafío de la habitacion
+        boolean encontrado = hab.getDesafios().eliminar(puntaje);
+        
+        if (encontrado){
+            exito = true;
+            
+            for (HashMap<Integer, Desafio> historialEquipo : desafiosResueltos.values()) {
+                
+                // Nos fijamos si el equipo tiene un desafío resuelto por esa cantidad de puntos
+                Desafio desafio = historialEquipo.get(puntaje);
+                
+                //  si es ese codigo de hab tiene ese puntaje entonces si lo eliminamos
+                if (desafio != null && desafio.getCodigoHabitacion() == codHabitacion) {
+                    // Ahora sí, estamos 100% seguros de que es el mismo desafío. Lo borramos.
                     historialEquipo.remove(puntaje);
                 }
             }
         }
-
-        return exito;
     }
+
+    return exito;
+}
 
     public boolean modificarDesafio(int codHabitacion, int puntajeOriginal, String nuevoNombre, String nuevoTipo) {
         boolean exito = false;
@@ -116,8 +125,9 @@ public class parra {
     //ABM EQUIPOS
     public boolean altaEquipo(String nombre, int puntajeExigido, int puntajeAcum, int codHab, int puntajeHab) {
         boolean exito = false;
+        Habitacion hab = (Habitacion) avlHabitaciones.obtenerInformacion(codHab);
         // .get  devuelve si existe ese objeto en la tabla
-        if (hashEquipos.get(nombre) == null) {
+        if (hashEquipos.get(nombre) == null && hab!= null && puntajeExigido >= 0 && puntajeAcum >=0 && puntajeHab>=0 ) {
             exito=true;
 
             Equipo equipoNuevo = new Equipo(nombre, puntajeExigido, puntajeAcum, codHab, puntajeHab);
@@ -142,10 +152,12 @@ public class parra {
         return exito;
     }
 
-    public boolean modificarEquipo(String nombreOriginal, int puntajeExigido, int puntajeAcum, int codHab, int puntajeHab) {
+    public boolean modificarEquipo(String nombre, int puntajeExigido, int puntajeAcum, int codHab, int puntajeHab) {
         Boolean exito = false;
-        Equipo equipoActual = hashEquipos.get(nombreOriginal);
-        if (equipoActual != null) {
+        Equipo equipoActual = hashEquipos.get(nombre);
+        Habitacion hab = (Habitacion) avlHabitaciones.obtenerInformacion(codHab);
+
+        if (hashEquipos.get(nombre) != null && hab!= null && puntajeExigido >= 0 && puntajeAcum >=0 && puntajeHab>=0 ) {
             exito = true;
 
             equipoActual.setPuntajeExigido(puntajeExigido);

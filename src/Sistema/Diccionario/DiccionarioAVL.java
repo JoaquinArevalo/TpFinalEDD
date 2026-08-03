@@ -7,6 +7,11 @@ public class DiccionarioAVL {
         this.raiz = null;
     }
 
+    public boolean esVacio(){
+        boolean exito=false;
+        if(this.raiz != null) exito=true;
+        return exito;
+    }
     //CONSULTA DE EXISTENCIA (Verifica si la clave ya está cargada) ---
     public boolean contiene(Comparable claveBuscada) {
         return obtenerInformacionAux(this.raiz, claveBuscada) != null;
