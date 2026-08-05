@@ -80,7 +80,6 @@ public class DiccionarioAVL {
             } else if (comparacion > 0) {
                 n.setDerecho(eliminarAux(n.getDerecho(), clave, exito));
             } else {
-                // ¡Lo encontramos!
                 exito[0] = true;
                 
                 if (n.getIzquierdo() == null) {
@@ -185,14 +184,13 @@ public class DiccionarioAVL {
         String resultado = "";
 
         if (nodo != null) {
-            int altIzq = (nodo.getIzquierdo() != null) ? nodo.getIzquierdo().getAltura() : -1;
-            int altDer = (nodo.getDerecho() != null) ? nodo.getDerecho().getAltura() : -1;
+            int balance= calcularBalance(nodo);
             String datoTexto = (nodo.getDato() != null) ? nodo.getDato().toString() : "null";
 
             resultado = generarStringArbol(nodo.getDerecho(), prefijo + "        ") +
                         prefijo + "|-- " + nodo.getClave() +
                         " (Alt: " + nodo.getAltura() +
-                        ", Bal: " + (altIzq - altDer) +
+                        ", Bal: " + (balance) +
                         ") -> " + datoTexto + "\n" +
                         generarStringArbol(nodo.getIzquierdo(), prefijo + "        ");
         }
