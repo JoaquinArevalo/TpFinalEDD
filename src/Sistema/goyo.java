@@ -74,7 +74,6 @@ public class goyo {
                     int puntajeMin = Integer.parseInt(datos[3].trim());
                     
                     grafo.insertarArco(origen, destino, puntajeMin);
-                    grafo.insertarArco(destino, origen, puntajeMin);
                 }
             }
 
@@ -120,39 +119,39 @@ public class goyo {
                         String item = datos[j].trim();
                         if (item.isEmpty()) continue;
                         
-                            // Si tiene formato agrupado ej: (1:20,50)(2:30)
-                            if (item.contains(":")) {
-                                // Usamos StringTokenizer con los delimitadores: paréntesis de apertura, de cierre y espacio
-                                StringTokenizer st = new StringTokenizer(item, "() ");
+                        // Si tiene formato agrupado ej: (1:20,50)(2:30)
+                        if (item.contains(":")) {
+                            // Usamos StringTokenizer con los delimitadores: paréntesis de apertura, de cierre y espacio
+                            StringTokenizer st = new StringTokenizer(item, "() ");
+                            
+                            while (st.hasMoreTokens()) {
+                                // nextToken() nos dará directamente "1:20,50", "2:30", etc.
+                                String g = st.nextToken(); 
+                                String[] partesGrupo = g.split(":");
                                 
-                                while (st.hasMoreTokens()) {
-                                    // nextToken() nos dará directamente "1:20,50", "2:30", etc.
-                                    String g = st.nextToken(); 
-                                    String[] partesGrupo = g.split(":");
+                                if (partesGrupo.length == 2) {
+                                    int codHab = Integer.parseInt(partesGrupo[0].trim());
+                                    String[] puntajes = partesGrupo[1].split(",");
                                     
-                                    if (partesGrupo.length == 2) {
-                                        int codHab = Integer.parseInt(partesGrupo[0].trim());
-                                        String[] puntajes = partesGrupo[1].split(",");
+                                    Habitacion hab = (Habitacion) habitacionesAVL.obtenerInformacion(codHab);
+                                    if (hab != null) {
+                                        if (!historialHabitaciones.containsKey(codHab)) {
+                                            historialHabitaciones.put(codHab, new Lista());
+                                        }
+                                        // Recuperamos la lista específica de esa habitación
+                                        Lista listaDesafiosHabitacion = historialHabitaciones.get(codHab);
                                         
-                                        Habitacion hab = (Habitacion) habitacionesAVL.obtenerInformacion(codHab);
-                                        if (hab != null) {
-                                            if (!historialHabitaciones.containsKey(codHab)) {
-                                                historialHabitaciones.put(codHab, new Lista());
-                                            }
-                                            // Recuperamos la lista específica de esa habitación
-                                            Lista listaDesafiosHabitacion = historialHabitaciones.get(codHab);
-                                            
-                                            for (String pts : puntajes) {
-                                                int p = Integer.parseInt(pts.trim());
-                                                Desafio d = (Desafio) hab.getDesafios().obtenerInformacion(p);
-                                                if (d != null) {
-                                                    // Insertamos en la lista de la habitación correspondiente
-                                                    listaDesafiosHabitacion.insertar(d, listaDesafiosHabitacion.longitud() + 1);
-                                                }
+                                        for (String pts : puntajes) {
+                                            int p = Integer.parseInt(pts.trim());
+                                            Desafio d = (Desafio) hab.getDesafios().obtenerInformacion(p);
+                                            if (d != null) {
+                                                // Insertamos en la lista de la habitación correspondiente
+                                                listaDesafiosHabitacion.insertar(d, listaDesafiosHabitacion.longitud() + 1);
                                             }
                                         }
                                     }
                                 }
+                            }
                         } else {
                             // Formato separado ej: (1,20)
                             String limpio = item.replace("(", "").replace(")", "").replace("$", "");
