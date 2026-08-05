@@ -389,33 +389,34 @@ public class Grafo {
 
     public Grafo clone() {
         Grafo clon = new Grafo();
-        if (this.inicio == null) return clon;
+        if (this.inicio != null){
 
-        NodoVert auxOrig = this.inicio;
-        NodoVert ultClon = null;
-        while (auxOrig != null) {
-            NodoVert nuevo = new NodoVert(auxOrig.getElem(), null, null);
-            if (clon.inicio == null) clon.inicio = nuevo;
-            else                     ultClon.setSigVertice(nuevo);
-            ultClon = nuevo;
-            auxOrig = auxOrig.getSigVertice();
-        }
-
-        auxOrig = this.inicio;
-        NodoVert auxClon = clon.inicio;
-        while (auxOrig != null) {
-            NodoAdy adyOrig    = auxOrig.getPrimerAdy();
-            NodoAdy ultAdyClon = null;
-            while (adyOrig != null) {
-                NodoVert destinoClon = clon.ubicaVert(adyOrig.getVertice().getElem());
-                NodoAdy nuevoAdy = new NodoAdy(destinoClon, null, adyOrig.getEtiqueta());
-                if (auxClon.getPrimerAdy() == null) auxClon.setPrimerAdy(nuevoAdy);
-                else                                ultAdyClon.setSigAdyacente(nuevoAdy);
-                ultAdyClon = nuevoAdy;
-                adyOrig = adyOrig.getSigAdyacente();
+            NodoVert auxOrig = this.inicio;
+            NodoVert ultClon = null;
+            while (auxOrig != null) {
+                NodoVert nuevo = new NodoVert(auxOrig.getElem(), null, null);
+                if (clon.inicio == null) clon.inicio = nuevo;
+                else                     ultClon.setSigVertice(nuevo);
+                ultClon = nuevo;
+                auxOrig = auxOrig.getSigVertice();
             }
-            auxOrig = auxOrig.getSigVertice();
-            auxClon = auxClon.getSigVertice();
+
+            auxOrig = this.inicio;
+            NodoVert auxClon = clon.inicio;
+            while (auxOrig != null) {
+                NodoAdy adyOrig    = auxOrig.getPrimerAdy();
+                NodoAdy ultAdyClon = null;
+                while (adyOrig != null) {
+                    NodoVert destinoClon = clon.ubicaVert(adyOrig.getVertice().getElem());
+                    NodoAdy nuevoAdy = new NodoAdy(destinoClon, null, adyOrig.getEtiqueta());
+                    if (auxClon.getPrimerAdy() == null) auxClon.setPrimerAdy(nuevoAdy);
+                    else                                ultAdyClon.setSigAdyacente(nuevoAdy);
+                    ultAdyClon = nuevoAdy;
+                    adyOrig = adyOrig.getSigAdyacente();
+                }
+                auxOrig = auxOrig.getSigVertice();
+                auxClon = auxClon.getSigVertice();
+            }
         }
         return clon;
     }
