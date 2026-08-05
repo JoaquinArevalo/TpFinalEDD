@@ -418,6 +418,7 @@ public class Grafo {
                 auxClon = auxClon.getSigVertice();
             }
         }
+
         return clon;
     }
 
@@ -458,14 +459,14 @@ public class Grafo {
     public int ObtenerEtiqueta(Object hab, Object habABuscar){
         NodoVert[] arr = ubicarVertOrigDestino(hab, habABuscar);
         int i=-1;
-        NodoAdy puertas=arr[0].getPrimerAdy();//y si arr[0] es null? no se puede hacer getPrimerAdy de null
-        if( arr[0] != null && arr[1] != null){
-            while(i == -1 && puertas!=null){//las puertas no pueden ser negativas
-                if(puertas.getVertice()==arr[1]){
-                    i=puertas.getEtiqueta();
+        if(arr[0]!= null && arr[1]!=null){
+            NodoAdy puertas=arr[0].getPrimerAdy();
+                while(i == -1 && puertas!=null){//las puertas no pueden ser negativas
+                    if(puertas.getVertice()==arr[1]){
+                        i=puertas.getEtiqueta();
+                    }
+                    puertas=puertas.getSigAdyacente();
                 }
-                puertas=puertas.getSigAdyacente();
-            }
         }
         return i;
     }
