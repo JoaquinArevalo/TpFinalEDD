@@ -1,9 +1,9 @@
 LOG DEL SISTEMA ESCAPE HOUSE
-Inicio de ejecucion: 05/08/2026 12:40:17
+Inicio de ejecucion: 05/08/2026 18:42:34
 ============================================================
 
 ============================================================
-[05/08/2026 12:40:17] ESTADO DEL SISTEMA DESPUES DE LA CARGA INICIAL
+[05/08/2026 18:42:35] ESTADO DEL SISTEMA DESPUES DE LA CARGA INICIAL
 ============================================================
 
 ============================================================
@@ -12,46 +12,46 @@ Inicio de ejecucion: 05/08/2026 12:40:17
 
 1. AVL DE HABITACIONES
 ------------------------------------------------------------
-                                |-- 24 (Alt: 0, Bal: 0) -> Habitacion{codigo=24, nombre='Sótano', planta=-1, metrosCuadrados=40.0, tieneSalida=false}
-                        |-- 23 (Alt: 1, Bal: 0) -> Habitacion{codigo=23, nombre='Sala de Música', planta=1, metrosCuadrados=20.0, tieneSalida=false}
-                                |-- 22 (Alt: 0, Bal: 0) -> Habitacion{codigo=22, nombre='Sala de Juegos', planta=1, metrosCuadrados=35.0, tieneSalida=false}
-                |-- 21 (Alt: 2, Bal: 0) -> Habitacion{codigo=21, nombre='Sala de Estar', planta=0, metrosCuadrados=24.0, tieneSalida=false}
-                                |-- 20 (Alt: 0, Bal: 0) -> Habitacion{codigo=20, nombre='Recibidor', planta=0, metrosCuadrados=15.0, tieneSalida=true}
-                        |-- 19 (Alt: 1, Bal: 0) -> Habitacion{codigo=19, nombre='Quincho', planta=0, metrosCuadrados=45.0, tieneSalida=true}
-                                |-- 18 (Alt: 0, Bal: 0) -> Habitacion{codigo=18, nombre='Pasillo', planta=0, metrosCuadrados=8.5, tieneSalida=false}
-        |-- 17 (Alt: 3, Bal: 0) -> Habitacion{codigo=17, nombre='Natatorio', planta=0, metrosCuadrados=50.0, tieneSalida=true}
-                        |-- 16 (Alt: 1, Bal: 1) -> Habitacion{codigo=16, nombre='Lavadero', planta=0, metrosCuadrados=9.0, tieneSalida=true}
-                                |-- 15 (Alt: 0, Bal: 0) -> Habitacion{codigo=15, nombre='Invernadero', planta=0, metrosCuadrados=28.0, tieneSalida=true}
-                |-- 14 (Alt: 2, Bal: 0) -> Habitacion{codigo=14, nombre='Gimnasio', planta=1, metrosCuadrados=30.0, tieneSalida=false}
-                        |-- 13 (Alt: 1, Bal: 1) -> Habitacion{codigo=13, nombre='Escritorio', planta=1, metrosCuadrados=14.0, tieneSalida=false}
-                                |-- 12 (Alt: 0, Bal: 0) -> Habitacion{codigo=12, nombre='Escalera', planta=0, metrosCuadrados=10.0, tieneSalida=false}
-|-- 11 (Alt: 4, Bal: 0) -> Habitacion{codigo=11, nombre='Dormitorio de huéspedes', planta=1, metrosCuadrados=18.5, tieneSalida=false}
-                                |-- 10 (Alt: 0, Bal: 0) -> Habitacion{codigo=10, nombre='Dormitorio principal', planta=1, metrosCuadrados=25.5, tieneSalida=false}
-                        |-- 9 (Alt: 1, Bal: 0) -> Habitacion{codigo=9, nombre='Despensa', planta=0, metrosCuadrados=7.0, tieneSalida=false}
-                                |-- 8 (Alt: 0, Bal: 0) -> Habitacion{codigo=8, nombre='Depósito', planta=0, metrosCuadrados=12.0, tieneSalida=false}
-                |-- 7 (Alt: 2, Bal: 0) -> Habitacion{codigo=7, nombre='Comedor', planta=0, metrosCuadrados=26.0, tieneSalida=false}
-                        |-- 6 (Alt: 1, Bal: 1) -> Habitacion{codigo=6, nombre='Cocina', planta=0, metrosCuadrados=20.0, tieneSalida=false}
-                                |-- 5 (Alt: 0, Bal: 0) -> Habitacion{codigo=5, nombre='Cochera', planta=0, metrosCuadrados=30.0, tieneSalida=true}
-        |-- 4 (Alt: 3, Bal: -1) -> Habitacion{codigo=4, nombre='Bodega', planta=-1, metrosCuadrados=16.0, tieneSalida=false}
-                        |-- 3 (Alt: 0, Bal: 0) -> Habitacion{codigo=3, nombre='Biblioteca', planta=0, metrosCuadrados=22.0, tieneSalida=false}
-                |-- 2 (Alt: 1, Bal: 0) -> Habitacion{codigo=2, nombre='Baño', planta=0, metrosCuadrados=6.5, tieneSalida=false}
-                        |-- 1 (Alt: 0, Bal: 0) -> Habitacion{codigo=1, nombre='Altillo', planta=2, metrosCuadrados=18.0, tieneSalida=false}
+                                |-- 24 (Alt: 0, Bal: 0
+                        |-- 23 (Alt: 1, Bal: 0
+                                |-- 22 (Alt: 0, Bal: 0
+                |-- 21 (Alt: 2, Bal: 0
+                                |-- 20 (Alt: 0, Bal: 0
+                        |-- 19 (Alt: 1, Bal: 0
+                                |-- 18 (Alt: 0, Bal: 0
+        |-- 17 (Alt: 3, Bal: 0
+                        |-- 16 (Alt: 1, Bal: 1
+                                |-- 15 (Alt: 0, Bal: 0
+                |-- 14 (Alt: 2, Bal: 0
+                        |-- 13 (Alt: 1, Bal: 1
+                                |-- 12 (Alt: 0, Bal: 0
+|-- 11 (Alt: 4, Bal: 0
+                                |-- 10 (Alt: 0, Bal: 0
+                        |-- 9 (Alt: 1, Bal: 0
+                                |-- 8 (Alt: 0, Bal: 0
+                |-- 7 (Alt: 2, Bal: 0
+                        |-- 6 (Alt: 1, Bal: 1
+                                |-- 5 (Alt: 0, Bal: 0
+        |-- 4 (Alt: 3, Bal: -1
+                        |-- 3 (Alt: 0, Bal: 0
+                |-- 2 (Alt: 1, Bal: 0
+                        |-- 1 (Alt: 0, Bal: 0
 
 
 2. AVL DE DESAFIOS POR HABITACION
 ------------------------------------------------------------
 
 Habitacion 1 - Altillo
-|-- 30 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=1, puntaje=30, nombre='El Baúl Viejo', tipo='Destreza'}
+|-- 30 (Alt: 0, Bal: 0
 
 
 Habitacion 2 - Baño
 Diccionario vacio
 
 Habitacion 3 - Biblioteca
-        |-- 60 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=3, puntaje=60, nombre='Teorema Olvidado', tipo='Matemático'}
-|-- 40 (Alt: 1, Bal: 0) -> Desafio{codigoHabitacion=3, puntaje=40, nombre='Libro Faltante', tipo='Búsqueda'}
-        |-- 20 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=3, puntaje=20, nombre='Cifra de Cesar', tipo='Letras'}
+        |-- 60 (Alt: 0, Bal: 0
+|-- 40 (Alt: 1, Bal: 0
+        |-- 20 (Alt: 0, Bal: 0
 
 
 Habitacion 4 - Bodega
@@ -61,14 +61,14 @@ Habitacion 5 - Cochera
 Diccionario vacio
 
 Habitacion 6 - Cocina
-        |-- 50 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=6, puntaje=50, nombre='Combinación del Horno', tipo='Ingenio'}
-|-- 30 (Alt: 1, Bal: 0) -> Desafio{codigoHabitacion=6, puntaje=30, nombre='Sopa de Letras Gourmet', tipo='Letras'}
-        |-- 10 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=6, puntaje=10, nombre='Receta Secreta', tipo='Búsqueda'}
+        |-- 50 (Alt: 0, Bal: 0
+|-- 30 (Alt: 1, Bal: 0
+        |-- 10 (Alt: 0, Bal: 0
 
 
 Habitacion 7 - Comedor
-|-- 45 (Alt: 1, Bal: 1) -> Desafio{codigoHabitacion=7, puntaje=45, nombre='Pesaje de Platos', tipo='Matemático'}
-        |-- 25 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=7, puntaje=25, nombre='Adivinanza de la Cena', tipo='Lógico'}
+|-- 45 (Alt: 1, Bal: 1
+        |-- 25 (Alt: 0, Bal: 0
 
 
 Habitacion 8 - Depósito
@@ -78,15 +78,15 @@ Habitacion 9 - Despensa
 Diccionario vacio
 
 Habitacion 10 - Dormitorio principal
-|-- 50 (Alt: 1, Bal: 1) -> Desafio{codigoHabitacion=10, puntaje=50, nombre='Diario Íntimo', tipo='Letras'}
-        |-- 35 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=10, puntaje=35, nombre='Caja Fuerte', tipo='Ingenio'}
+|-- 50 (Alt: 1, Bal: 1
+        |-- 35 (Alt: 0, Bal: 0
 
 
 Habitacion 11 - Dormitorio de huéspedes
 Diccionario vacio
 
 Habitacion 12 - Escalera
-|-- 15 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=12, puntaje=15, nombre='Escescalón Hueco', tipo='Búsqueda'}
+|-- 15 (Alt: 0, Bal: 0
 
 
 Habitacion 13 - Escritorio
@@ -102,40 +102,40 @@ Habitacion 16 - Lavadero
 Diccionario vacio
 
 Habitacion 17 - Natatorio
-|-- 70 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=17, puntaje=70, nombre='Buceo Profundo', tipo='Destreza'}
+|-- 70 (Alt: 0, Bal: 0
 
 
 Habitacion 18 - Pasillo
-|-- 35 (Alt: 1, Bal: 1) -> Desafio{codigoHabitacion=18, puntaje=35, nombre='El Piso Roto', tipo='Destreza'}
-        |-- 15 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=18, puntaje=15, nombre='Alfombra Sospechosa', tipo='Búsqueda'}
+|-- 35 (Alt: 1, Bal: 1
+        |-- 15 (Alt: 0, Bal: 0
 
 
 Habitacion 19 - Quincho
-|-- 65 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=19, puntaje=65, nombre='El Asador Secreto', tipo='Ingenio'}
+|-- 65 (Alt: 0, Bal: 0
 
 
 Habitacion 20 - Recibidor
-        |-- 50 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=20, puntaje=50, nombre='Código del Reloj', tipo='Matemático'}
-|-- 30 (Alt: 1, Bal: 0) -> Desafio{codigoHabitacion=20, puntaje=30, nombre='Acertijo del Cuadro', tipo='Lógico'}
-        |-- 10 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=20, puntaje=10, nombre='Llave Escondida', tipo='Búsqueda'}
+        |-- 50 (Alt: 0, Bal: 0
+|-- 30 (Alt: 1, Bal: 0
+        |-- 10 (Alt: 0, Bal: 0
 
 
 Habitacion 21 - Sala de Estar
-|-- 40 (Alt: 1, Bal: 1) -> Desafio{codigoHabitacion=21, puntaje=40, nombre='Secuencia de Luces', tipo='Ingenio'}
-        |-- 20 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=21, puntaje=20, nombre='Crucigrama Antiguo', tipo='Letras'}
+|-- 40 (Alt: 1, Bal: 1
+        |-- 20 (Alt: 0, Bal: 0
 
 
 Habitacion 22 - Sala de Juegos
-|-- 45 (Alt: 1, Bal: 1) -> Desafio{codigoHabitacion=22, puntaje=45, nombre='Dardo al Blanco', tipo='Destreza'}
-        |-- 25 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=22, puntaje=25, nombre='Partida de Ajedrez', tipo='Lógico'}
+|-- 45 (Alt: 1, Bal: 1
+        |-- 25 (Alt: 0, Bal: 0
 
 
 Habitacion 23 - Sala de Música
 Diccionario vacio
 
 Habitacion 24 - Sótano
-|-- 55 (Alt: 1, Bal: 1) -> Desafio{codigoHabitacion=24, puntaje=55, nombre='Engranajes Oxidados', tipo='Ingenio'}
-        |-- 15 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=24, puntaje=15, nombre='Linterna sin Pilas', tipo='Búsqueda'}
+|-- 55 (Alt: 1, Bal: 1
+        |-- 15 (Alt: 0, Bal: 0
 
 
 3. GRAFO DE HABITACIONES Y PUERTAS
@@ -315,318 +315,3 @@ EQUIPO: Los Investigadores
     DESAFIOS: [Desafio{codigoHabitacion=12, puntaje=15, nombre='Escescalón Hueco', tipo='Búsqueda'}]
 ============================================================
 
-
-============================================================
-[05/08/2026 12:48:30] ESTADO FINAL DEL SISTEMA
-============================================================
-
-============================================================
-               ESTADO COMPLETO ESCAPE HOUSE
-============================================================
-
-1. AVL DE HABITACIONES
-------------------------------------------------------------
-                                |-- 24 (Alt: 0, Bal: 0) -> Habitacion{codigo=24, nombre='Sótano', planta=-1, metrosCuadrados=40.0, tieneSalida=false}
-                        |-- 23 (Alt: 1, Bal: 0) -> Habitacion{codigo=23, nombre='Sala de Música', planta=1, metrosCuadrados=20.0, tieneSalida=false}
-                                |-- 22 (Alt: 0, Bal: 0) -> Habitacion{codigo=22, nombre='Sala de Juegos', planta=1, metrosCuadrados=35.0, tieneSalida=false}
-                |-- 21 (Alt: 2, Bal: 0) -> Habitacion{codigo=21, nombre='Sala de Estar', planta=0, metrosCuadrados=24.0, tieneSalida=false}
-                                |-- 20 (Alt: 0, Bal: 0) -> Habitacion{codigo=20, nombre='Recibidor', planta=0, metrosCuadrados=15.0, tieneSalida=true}
-                        |-- 19 (Alt: 1, Bal: 0) -> Habitacion{codigo=19, nombre='Quincho', planta=0, metrosCuadrados=45.0, tieneSalida=true}
-                                |-- 18 (Alt: 0, Bal: 0) -> Habitacion{codigo=18, nombre='Pasillo', planta=0, metrosCuadrados=8.5, tieneSalida=false}
-        |-- 17 (Alt: 3, Bal: 0) -> Habitacion{codigo=17, nombre='Natatorio', planta=0, metrosCuadrados=50.0, tieneSalida=true}
-                        |-- 16 (Alt: 1, Bal: 1) -> Habitacion{codigo=16, nombre='Lavadero', planta=0, metrosCuadrados=9.0, tieneSalida=true}
-                                |-- 15 (Alt: 0, Bal: 0) -> Habitacion{codigo=15, nombre='Invernadero', planta=0, metrosCuadrados=28.0, tieneSalida=true}
-                |-- 14 (Alt: 2, Bal: 0) -> Habitacion{codigo=14, nombre='Gimnasio', planta=1, metrosCuadrados=30.0, tieneSalida=false}
-                        |-- 13 (Alt: 1, Bal: 1) -> Habitacion{codigo=13, nombre='Escritorio', planta=1, metrosCuadrados=14.0, tieneSalida=false}
-                                |-- 12 (Alt: 0, Bal: 0) -> Habitacion{codigo=12, nombre='Escalera', planta=0, metrosCuadrados=10.0, tieneSalida=false}
-|-- 11 (Alt: 4, Bal: 0) -> Habitacion{codigo=11, nombre='Dormitorio de huéspedes', planta=1, metrosCuadrados=18.5, tieneSalida=false}
-                                |-- 10 (Alt: 0, Bal: 0) -> Habitacion{codigo=10, nombre='Dormitorio principal', planta=1, metrosCuadrados=25.5, tieneSalida=false}
-                        |-- 9 (Alt: 1, Bal: 0) -> Habitacion{codigo=9, nombre='Despensa', planta=0, metrosCuadrados=7.0, tieneSalida=false}
-                                |-- 8 (Alt: 0, Bal: 0) -> Habitacion{codigo=8, nombre='Depósito', planta=0, metrosCuadrados=12.0, tieneSalida=false}
-                |-- 7 (Alt: 2, Bal: 0) -> Habitacion{codigo=7, nombre='Comedor', planta=0, metrosCuadrados=26.0, tieneSalida=false}
-                        |-- 6 (Alt: 1, Bal: 1) -> Habitacion{codigo=6, nombre='Cocina', planta=0, metrosCuadrados=20.0, tieneSalida=false}
-                                |-- 5 (Alt: 0, Bal: 0) -> Habitacion{codigo=5, nombre='Cochera', planta=0, metrosCuadrados=30.0, tieneSalida=true}
-        |-- 4 (Alt: 3, Bal: -1) -> Habitacion{codigo=4, nombre='Bodega', planta=-1, metrosCuadrados=16.0, tieneSalida=false}
-                        |-- 3 (Alt: 0, Bal: 0) -> Habitacion{codigo=3, nombre='Biblioteca', planta=0, metrosCuadrados=22.0, tieneSalida=false}
-                |-- 2 (Alt: 1, Bal: 0) -> Habitacion{codigo=2, nombre='Baño', planta=0, metrosCuadrados=6.5, tieneSalida=false}
-                        |-- 1 (Alt: 0, Bal: 0) -> Habitacion{codigo=1, nombre='Altillo', planta=2, metrosCuadrados=18.0, tieneSalida=false}
-
-
-2. AVL DE DESAFIOS POR HABITACION
-------------------------------------------------------------
-
-Habitacion 1 - Altillo
-|-- 30 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=1, puntaje=30, nombre='El Baúl Viejo', tipo='Destreza'}
-
-
-Habitacion 2 - Baño
-Diccionario vacio
-
-Habitacion 3 - Biblioteca
-        |-- 60 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=3, puntaje=60, nombre='Teorema Olvidado', tipo='Matemático'}
-|-- 40 (Alt: 1, Bal: 0) -> Desafio{codigoHabitacion=3, puntaje=40, nombre='Libro Faltante', tipo='Búsqueda'}
-        |-- 20 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=3, puntaje=20, nombre='Cifra de Cesar', tipo='Letras'}
-
-
-Habitacion 4 - Bodega
-Diccionario vacio
-
-Habitacion 5 - Cochera
-Diccionario vacio
-
-Habitacion 6 - Cocina
-        |-- 50 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=6, puntaje=50, nombre='Combinación del Horno', tipo='Ingenio'}
-|-- 30 (Alt: 1, Bal: 0) -> Desafio{codigoHabitacion=6, puntaje=30, nombre='Sopa de Letras Gourmet', tipo='Letras'}
-        |-- 10 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=6, puntaje=10, nombre='Receta Secreta', tipo='Búsqueda'}
-
-
-Habitacion 7 - Comedor
-|-- 45 (Alt: 1, Bal: 1) -> Desafio{codigoHabitacion=7, puntaje=45, nombre='Pesaje de Platos', tipo='Matemático'}
-        |-- 25 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=7, puntaje=25, nombre='Adivinanza de la Cena', tipo='Lógico'}
-
-
-Habitacion 8 - Depósito
-Diccionario vacio
-
-Habitacion 9 - Despensa
-Diccionario vacio
-
-Habitacion 10 - Dormitorio principal
-|-- 50 (Alt: 1, Bal: 1) -> Desafio{codigoHabitacion=10, puntaje=50, nombre='Diario Íntimo', tipo='Letras'}
-        |-- 35 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=10, puntaje=35, nombre='Caja Fuerte', tipo='Ingenio'}
-
-
-Habitacion 11 - Dormitorio de huéspedes
-Diccionario vacio
-
-Habitacion 12 - Escalera
-|-- 15 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=12, puntaje=15, nombre='Escescalón Hueco', tipo='Búsqueda'}
-
-
-Habitacion 13 - Escritorio
-Diccionario vacio
-
-Habitacion 14 - Gimnasio
-Diccionario vacio
-
-Habitacion 15 - Invernadero
-Diccionario vacio
-
-Habitacion 16 - Lavadero
-Diccionario vacio
-
-Habitacion 17 - Natatorio
-|-- 70 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=17, puntaje=70, nombre='Buceo Profundo', tipo='Destreza'}
-
-
-Habitacion 18 - Pasillo
-|-- 35 (Alt: 1, Bal: 1) -> Desafio{codigoHabitacion=18, puntaje=35, nombre='El Piso Roto', tipo='Destreza'}
-        |-- 15 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=18, puntaje=15, nombre='Alfombra Sospechosa', tipo='Búsqueda'}
-
-
-Habitacion 19 - Quincho
-|-- 65 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=19, puntaje=65, nombre='El Asador Secreto', tipo='Ingenio'}
-
-
-Habitacion 20 - Recibidor
-        |-- 50 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=20, puntaje=50, nombre='Código del Reloj', tipo='Matemático'}
-|-- 30 (Alt: 1, Bal: 0) -> Desafio{codigoHabitacion=20, puntaje=30, nombre='Acertijo del Cuadro', tipo='Lógico'}
-        |-- 10 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=20, puntaje=10, nombre='Llave Escondida', tipo='Búsqueda'}
-
-
-Habitacion 21 - Sala de Estar
-|-- 40 (Alt: 1, Bal: 1) -> Desafio{codigoHabitacion=21, puntaje=40, nombre='Secuencia de Luces', tipo='Ingenio'}
-        |-- 20 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=21, puntaje=20, nombre='Crucigrama Antiguo', tipo='Letras'}
-
-
-Habitacion 22 - Sala de Juegos
-|-- 45 (Alt: 1, Bal: 1) -> Desafio{codigoHabitacion=22, puntaje=45, nombre='Dardo al Blanco', tipo='Destreza'}
-        |-- 25 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=22, puntaje=25, nombre='Partida de Ajedrez', tipo='Lógico'}
-
-
-Habitacion 23 - Sala de Música
-Diccionario vacio
-
-Habitacion 24 - Sótano
-|-- 55 (Alt: 1, Bal: 1) -> Desafio{codigoHabitacion=24, puntaje=55, nombre='Engranajes Oxidados', tipo='Ingenio'}
-        |-- 15 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=24, puntaje=15, nombre='Linterna sin Pilas', tipo='Búsqueda'}
-
-
-3. GRAFO DE HABITACIONES Y PUERTAS
-------------------------------------------------------------
-VERTICE[1] = 10
-    ADY[1] -> 12 | Puntaje exigido: 35
-    ADY[2] -> 2 | Puntaje exigido: 15
-    ADY[3] -> 1 | Puntaje exigido: 20
-VERTICE[2] = 5
-    ADY[1] -> 18 | Puntaje exigido: 40
-VERTICE[3] = 20
-    ADY[1] -> 21 | Puntaje exigido: 10
-    ADY[2] -> 18 | Puntaje exigido: 15
-VERTICE[4] = 3
-    ADY[1] -> 18 | Puntaje exigido: 25
-    ADY[2] -> 13 | Puntaje exigido: 30
-    ADY[3] -> 15 | Puntaje exigido: 50
-VERTICE[5] = 8
-    ADY[1] -> 24 | Puntaje exigido: 25
-VERTICE[6] = 1
-    ADY[1] -> 22 | Puntaje exigido: 50
-    ADY[2] -> 10 | Puntaje exigido: 20
-VERTICE[7] = 15
-    ADY[1] -> 3 | Puntaje exigido: 50
-VERTICE[8] = 22
-    ADY[1] -> 12 | Puntaje exigido: 40
-    ADY[2] -> 23 | Puntaje exigido: 30
-    ADY[3] -> 14 | Puntaje exigido: 35
-    ADY[4] -> 1 | Puntaje exigido: 50
-VERTICE[9] = 24
-    ADY[1] -> 12 | Puntaje exigido: 40
-    ADY[2] -> 4 | Puntaje exigido: 20
-    ADY[3] -> 8 | Puntaje exigido: 25
-VERTICE[10] = 12
-    ADY[1] -> 18 | Puntaje exigido: 15
-    ADY[2] -> 10 | Puntaje exigido: 35
-    ADY[3] -> 11 | Puntaje exigido: 30
-    ADY[4] -> 22 | Puntaje exigido: 40
-    ADY[5] -> 24 | Puntaje exigido: 40
-VERTICE[11] = 18
-    ADY[1] -> 20 | Puntaje exigido: 15
-    ADY[2] -> 2 | Puntaje exigido: 10
-    ADY[3] -> 3 | Puntaje exigido: 25
-    ADY[4] -> 12 | Puntaje exigido: 15
-    ADY[5] -> 5 | Puntaje exigido: 40
-VERTICE[12] = 6
-    ADY[1] -> 7 | Puntaje exigido: 20
-    ADY[2] -> 9 | Puntaje exigido: 10
-    ADY[3] -> 16 | Puntaje exigido: 30
-VERTICE[13] = 7
-    ADY[1] -> 21 | Puntaje exigido: 20
-    ADY[2] -> 6 | Puntaje exigido: 20
-    ADY[3] -> 19 | Puntaje exigido: 60
-VERTICE[14] = 2
-    ADY[1] -> 18 | Puntaje exigido: 10
-    ADY[2] -> 10 | Puntaje exigido: 15
-    ADY[3] -> 11 | Puntaje exigido: 15
-VERTICE[15] = 4
-    ADY[1] -> 24 | Puntaje exigido: 20
-VERTICE[16] = 9
-    ADY[1] -> 6 | Puntaje exigido: 10
-VERTICE[17] = 11
-    ADY[1] -> 12 | Puntaje exigido: 30
-    ADY[2] -> 2 | Puntaje exigido: 15
-VERTICE[18] = 13
-    ADY[1] -> 3 | Puntaje exigido: 30
-VERTICE[19] = 14
-    ADY[1] -> 22 | Puntaje exigido: 35
-    ADY[2] -> 17 | Puntaje exigido: 70
-VERTICE[20] = 16
-    ADY[1] -> 6 | Puntaje exigido: 30
-VERTICE[21] = 17
-    ADY[1] -> 14 | Puntaje exigido: 70
-VERTICE[22] = 19
-    ADY[1] -> 7 | Puntaje exigido: 60
-VERTICE[23] = 21
-    ADY[1] -> 20 | Puntaje exigido: 10
-    ADY[2] -> 7 | Puntaje exigido: 20
-VERTICE[24] = 23
-    ADY[1] -> 22 | Puntaje exigido: 30
-
-4. HASH DE EQUIPOS
-------------------------------------------------------------
-CLAVE HASH: Novatos
-VALOR: Equipo{nombre='Novatos', puntajeExigido=200, puntajeAcumulado=10, codigoHabitacion=20, puntajeHabitacion=10}
-CLAVE HASH: Escapistas Pro
-VALOR: Equipo{nombre='Escapistas Pro', puntajeExigido=500, puntajeAcumulado=200, codigoHabitacion=22, puntajeHabitacion=45}
-CLAVE HASH: Sin Rumbo
-VALOR: Equipo{nombre='Sin Rumbo', puntajeExigido=250, puntajeAcumulado=0, codigoHabitacion=20, puntajeHabitacion=0}
-CLAVE HASH: Los Valientes
-VALOR: Equipo{nombre='Los Valientes', puntajeExigido=300, puntajeAcumulado=90, codigoHabitacion=7, puntajeHabitacion=25}
-CLAVE HASH: Enigma Team
-VALOR: Equipo{nombre='Enigma Team', puntajeExigido=450, puntajeAcumulado=120, codigoHabitacion=6, puntajeHabitacion=50}
-CLAVE HASH: Los Locos Adams
-VALOR: Equipo{nombre='Los Locos Adams', puntajeExigido=400, puntajeAcumulado=50, codigoHabitacion=18, puntajeHabitacion=15}
-CLAVE HASH: Aventureros
-VALOR: Equipo{nombre='Aventureros', puntajeExigido=300, puntajeAcumulado=85, codigoHabitacion=1, puntajeHabitacion=30}
-CLAVE HASH: Sherlocks
-VALOR: Equipo{nombre='Sherlocks', puntajeExigido=350, puntajeAcumulado=150, codigoHabitacion=3, puntajeHabitacion=60}
-CLAVE HASH: Caza Misterios
-VALOR: Equipo{nombre='Caza Misterios', puntajeExigido=400, puntajeAcumulado=140, codigoHabitacion=24, puntajeHabitacion=55}
-CLAVE HASH: Los Investigadores
-VALOR: Equipo{nombre='Los Investigadores', puntajeExigido=350, puntajeAcumulado=110, codigoHabitacion=10, puntajeHabitacion=50}
-
-5. MAPEO DE DESAFIOS RESUELTOS
-------------------------------------------------------------
-EQUIPO: Novatos
-    HABITACION: 20
-    DESAFIOS: [Desafio{codigoHabitacion=20, puntaje=10, nombre='Llave Escondida', tipo='Búsqueda'}]
-EQUIPO: Escapistas Pro
-    HABITACION: 18
-    DESAFIOS: [Desafio{codigoHabitacion=18, puntaje=35, nombre='El Piso Roto', tipo='Destreza'}]
-    HABITACION: 20
-    DESAFIOS: [Desafio{codigoHabitacion=20, puntaje=50, nombre='Código del Reloj', tipo='Matemático'}]
-    HABITACION: 22
-    DESAFIOS: [Desafio{codigoHabitacion=22, puntaje=25, nombre='Partida de Ajedrez', tipo='Lógico'}, Desafio{codigoHabitacion=22, puntaje=45, nombre='Dardo al Blanco', tipo='Destreza'}]
-    HABITACION: 12
-    DESAFIOS: [Desafio{codigoHabitacion=12, puntaje=15, nombre='Escescalón Hueco', tipo='Búsqueda'}]
-EQUIPO: Sin Rumbo
-    Sin desafios resueltos.
-EQUIPO: Los Valientes
-    HABITACION: 20
-    DESAFIOS: [Desafio{codigoHabitacion=20, puntaje=30, nombre='Acertijo del Cuadro', tipo='Lógico'}, Desafio{codigoHabitacion=20, puntaje=10, nombre='Llave Escondida', tipo='Búsqueda'}]
-    HABITACION: 21
-    DESAFIOS: [Desafio{codigoHabitacion=21, puntaje=20, nombre='Crucigrama Antiguo', tipo='Letras'}, Desafio{codigoHabitacion=21, puntaje=40, nombre='Secuencia de Luces', tipo='Ingenio'}]
-    HABITACION: 7
-    DESAFIOS: [Desafio{codigoHabitacion=7, puntaje=25, nombre='Adivinanza de la Cena', tipo='Lógico'}]
-EQUIPO: Enigma Team
-    HABITACION: 20
-    DESAFIOS: [Desafio{codigoHabitacion=20, puntaje=30, nombre='Acertijo del Cuadro', tipo='Lógico'}]
-    HABITACION: 21
-    DESAFIOS: [Desafio{codigoHabitacion=21, puntaje=20, nombre='Crucigrama Antiguo', tipo='Letras'}]
-    HABITACION: 6
-    DESAFIOS: [Desafio{codigoHabitacion=6, puntaje=10, nombre='Receta Secreta', tipo='Búsqueda'}, Desafio{codigoHabitacion=6, puntaje=50, nombre='Combinación del Horno', tipo='Ingenio'}, Desafio{codigoHabitacion=6, puntaje=30, nombre='Sopa de Letras Gourmet', tipo='Letras'}]
-    HABITACION: 7
-    DESAFIOS: [Desafio{codigoHabitacion=7, puntaje=25, nombre='Adivinanza de la Cena', tipo='Lógico'}]
-EQUIPO: Los Locos Adams
-    HABITACION: 18
-    DESAFIOS: [Desafio{codigoHabitacion=18, puntaje=15, nombre='Alfombra Sospechosa', tipo='Búsqueda'}]
-    HABITACION: 20
-    DESAFIOS: [Desafio{codigoHabitacion=20, puntaje=10, nombre='Llave Escondida', tipo='Búsqueda'}, Desafio{codigoHabitacion=20, puntaje=50, nombre='Código del Reloj', tipo='Matemático'}]
-EQUIPO: Aventureros
-    HABITACION: 1
-    DESAFIOS: [Desafio{codigoHabitacion=1, puntaje=30, nombre='El Baúl Viejo', tipo='Destreza'}]
-    HABITACION: 18
-    DESAFIOS: [Desafio{codigoHabitacion=18, puntaje=15, nombre='Alfombra Sospechosa', tipo='Búsqueda'}]
-    HABITACION: 20
-    DESAFIOS: [Desafio{codigoHabitacion=20, puntaje=10, nombre='Llave Escondida', tipo='Búsqueda'}]
-    HABITACION: 22
-    DESAFIOS: [Desafio{codigoHabitacion=22, puntaje=25, nombre='Partida de Ajedrez', tipo='Lógico'}]
-    HABITACION: 12
-    DESAFIOS: [Desafio{codigoHabitacion=12, puntaje=15, nombre='Escescalón Hueco', tipo='Búsqueda'}]
-EQUIPO: Sherlocks
-    HABITACION: 18
-    DESAFIOS: [Desafio{codigoHabitacion=18, puntaje=15, nombre='Alfombra Sospechosa', tipo='Búsqueda'}, Desafio{codigoHabitacion=18, puntaje=35, nombre='El Piso Roto', tipo='Destreza'}]
-    HABITACION: 3
-    DESAFIOS: [Desafio{codigoHabitacion=3, puntaje=40, nombre='Libro Faltante', tipo='Búsqueda'}, Desafio{codigoHabitacion=3, puntaje=20, nombre='Cifra de Cesar', tipo='Letras'}, Desafio{codigoHabitacion=3, puntaje=60, nombre='Teorema Olvidado', tipo='Matemático'}]
-    HABITACION: 20
-    DESAFIOS: [Desafio{codigoHabitacion=20, puntaje=30, nombre='Acertijo del Cuadro', tipo='Lógico'}]
-EQUIPO: Caza Misterios
-    HABITACION: 18
-    DESAFIOS: [Desafio{codigoHabitacion=18, puntaje=35, nombre='El Piso Roto', tipo='Destreza'}]
-    HABITACION: 20
-    DESAFIOS: [Desafio{codigoHabitacion=20, puntaje=30, nombre='Acertijo del Cuadro', tipo='Lógico'}]
-    HABITACION: 24
-    DESAFIOS: [Desafio{codigoHabitacion=24, puntaje=15, nombre='Linterna sin Pilas', tipo='Búsqueda'}, Desafio{codigoHabitacion=24, puntaje=55, nombre='Engranajes Oxidados', tipo='Ingenio'}]
-    HABITACION: 12
-    DESAFIOS: [Desafio{codigoHabitacion=12, puntaje=15, nombre='Escescalón Hueco', tipo='Búsqueda'}]
-EQUIPO: Los Investigadores
-    HABITACION: 18
-    DESAFIOS: [Desafio{codigoHabitacion=18, puntaje=15, nombre='Alfombra Sospechosa', tipo='Búsqueda'}]
-    HABITACION: 20
-    DESAFIOS: [Desafio{codigoHabitacion=20, puntaje=10, nombre='Llave Escondida', tipo='Búsqueda'}]
-    HABITACION: 10
-    DESAFIOS: [Desafio{codigoHabitacion=10, puntaje=35, nombre='Caja Fuerte', tipo='Ingenio'}, Desafio{codigoHabitacion=10, puntaje=50, nombre='Diario Íntimo', tipo='Letras'}]
-    HABITACION: 12
-    DESAFIOS: [Desafio{codigoHabitacion=12, puntaje=15, nombre='Escescalón Hueco', tipo='Búsqueda'}]
-============================================================
-
-Fin de ejecucion: 05/08/2026 12:48:30

@@ -22,8 +22,7 @@ public class goyo {
         Lista lineasDesafios = new Lista();
         Lista lineasEquipos = new Lista();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo));
-             FileWriter logWriter = new FileWriter("log_escape_house.txt", true)) {
+        try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
             
             String linea;
             
@@ -178,13 +177,7 @@ public class goyo {
                     }
                 }
             }
-            
-            // ETAPA 3: Registro en archivo de Log
-            logWriter.write("Carga Inicial del Sistema\n");
-            logWriter.write("Total Habitaciones cargadas: " + lineasHabitaciones.longitud() + "\n");
-            logWriter.write("Total Puertas cargadas: " + lineasPuertas.longitud() + "\n");
-            logWriter.write("Total Desafios cargados: " + lineasDesafios.longitud() + "\n");
-            logWriter.write("Total Equipos cargados: " + lineasEquipos.longitud() + "\n");            
+                   
             cargaExitosa = true;
 
         } catch (IOException e) {
