@@ -1,100 +1,147 @@
-# ==========================================
-# CARGA INICIAL: ESCAPE HOUSE 2.0
-# ==========================================
+# ============================================================
+# CARGA INICIAL - ESCAPE HOUSE 2.0
+# ============================================================
+# ============================================================
+# 1. HABITACIONES
+# Formato: H;codigo;nombre;planta;metrosCuadrados;salidaExterior
+# provoca rotaciones simples y dobles en el AVL principal.
+# ============================================================
 
-# --- 1. HABITACIONES (H;codigo;nombre;planta;m2;salidaExterior) ---
-# Ordenadas para forzar el árbol exacto de la IA (Nivel 4 a Nivel 0 invertido)
-H;24;Sotano;-1;40.0;false
+H;24;Billar;0;12.0;false
 H;22;Sala de Juegos;1;35.0;false
-H;20;Altillo;2;18.0;false
 H;18;Pasillo;0;8.5;false
 H;14;Gimnasio;1;30.0;false
-H;10;Dormitorio principal;1;25.5;false
-H;7;Comedor;0;26.0;false
-H;5;Cochera;0;30.0;false
-H;23;Sala de Música;1;20.0;false
-H;19;Quincho;0;45.0;true
-H;16;Lavadero;0;9.0;false
-H;13;Escritorio;1;14.0;false
-H;9;Despensa;0;7.0;false
-H;6;Cocina;0;20.0;false
+H;2;Hall Central;0;18.0;false
 H;3;Biblioteca;0;22.0;false
 H;1;Recibidor;0;15.0;false
+H;10;Dormitorio principal;1;25.5;false
 H;21;Sala de Estar;0;24.0;false
-H;15;Invernadero;0;28.0;false
-H;8;Deposito;0;12.0;false
-H;2;Baño;0;6.5;false
+H;9;Despensa;0;7.0;false
+H;13;Escritorio;1;14.0;false
 H;17;Natatorio;0;50.0;false
-H;4;Bodega;-1;16.0;false
 H;11;Dormitorio de huespedes;1;18.5;false
+H;19;Quincho;0;45.0;true
+H;5;Cochera;0;30.0;false
+H;20;Altillo;2;18.0;false
+H;6;Cocina;0;20.0;false
+H;7;Comedor;0;26.0;false
+H;12;Escalera;0;10.0;false
+H;23;Sala de Musica;1;20.0;false
+H;8;Deposito;0;12.0;false
+H;16;Lavadero;0;9.0;false
+H;15;Invernadero;0;28.0;false
+H;4;Bodega;-1;16.0;false
 
-# --- 2. PUERTAS / ARCOS DEL GRAFO (P;origen;destino;puntajeMinimo) ---
-# Conectan la casa asegurando múltiples caminos para probar los algoritmos del grafo
+
+# ============================================================
+# 2. PUERTAS Y ARCOS DEL GRAFO
+# Formato: P;habitacionOrigen;habitacionDestino;puntajeMinimo
+# ============================================================
+
 P;20;21;10
 P;20;18;15
+P;20;23;30
 P;21;7;20
-P;7;6;20
-P;6;9;10
-P;6;16;30
+P;21;22;25
 P;18;2;10
 P;18;3;25
 P;18;12;15
-P;18;5;40
+P;7;6;20
+P;7;19;60
+P;6;9;10
+P;6;16;30
 P;3;13;30
-P;3;15;50
+P;3;12;20
 P;12;10;35
-P;12;11;30
 P;12;22;40
+P;12;24;45
 P;10;2;15
+P;10;1;20
 P;11;2;15
+P;11;23;25
 P;22;23;30
 P;22;14;35
-P;22;1;50
-P;12;24;40
+P;14;17;70
+P;14;15;25
+P;17;24;55
 P;24;4;20
 P;24;8;25
-P;7;19;60
-P;14;17;70
-P;1;10;20
+P;24;19;30
+P;4;8;15
+P;4;5;25
+P;8;16;20
+P;5;16;25
+P;16;19;35
+P;15;19;45
 
-# --- 3. DESAFIOS (D;puntaje;codigoHabitacion;nombre;tipo) ---
-# Puntajes desordenados por habitación para generar rotaciones en los sub-árboles AVL
-D;30;20;Acertijo del Cuadro;Logico
-D;10;20;Llave Escondida;Busqueda
-D;50;20;Codigo del Reloj;Matematico
-D;20;21;Crucigrama Antiguo;Letras
+
+# ============================================================
+# 3. DESAFIOS
+# Formato: D;puntaje;codigoHabitacion;nombre;tipo
+#
+# Habitacion 20: 30,20,10 -> rotacion simple derecha
+# Habitacion 18: 10,25,35 -> rotacion simple izquierda
+# Habitacion 3 : 40,20,30 -> rotacion doble izquierda-derecha
+# Habitacion 12: 15,40,25 -> rotacion doble derecha-izquierda
+# ============================================================
+
 D;40;21;Secuencia de Luces;Ingenio
-D;15;18;Alfombra Sospechosa;Búsqueda
-D;35;18;El Piso Roto;Destreza
+D;60;7;Mesa con Compartimento;Busqueda
+D;10;20;Llave Escondida;Busqueda
+D;30;23;Piano Cerrado;Ingenio
+D;35;18;Piso Quebrado;Destreza
 D;25;7;Adivinanza de la Cena;Logico
-D;45;7;Pesaje de Platos;Matematico
-D;10;6;Receta Secreta;Busqueda
-D;50;6;Combinacion del Horno;Ingenio
-D;30;6;Sopa de Letras Gourmet;Letras
-D;40;3;Libro Faltante;Busqueda
-D;20;3;Cifra de Cesar;Letras
-D;60;3;Teorema Olvidado;Matematico
-D;15;12;Escescalon Hueco;Busqueda
-D;35;10;Caja Fuerte;Ingenio
-D;50;10;Diario Íntimo;Letras
-D;25;22;Partida de Ajedrez;Logico
-D;45;22;Dardo al Blanco;Destreza
+D;20;20;Reloj de Arena;Logico
+D;25;12;Escalon Numerado;Logico
+D;20;21;Crucigrama Antiguo;Letras
 D;15;24;Linterna sin Pilas;Busqueda
-D;55;24;Engranajes Oxidados;Ingenio
-D;30;1;El Baul Viejo;Destreza
-D;65;19;El Asador Secreto;Ingenio
+D;70;14;Press de Banca;Destreza
+D;40;17;Cruce de Carriles;Destreza
+D;50;6;Combinacion del Horno;Ingenio
+D;15;10;Retrato Movido;Busqueda
+D;30;3;Mapa de Estantes;Logico
+D;30;20;Codigo del Cuadro;Matematico
+D;25;23;Partitura Incompleta;Letras
+D;45;22;Dardo al Blanco;Destreza
+D;50;14;Banco Bloqueado;Ingenio
+D;20;3;Cifra de Cesar;Letras
+D;45;24;Puerta de Seguridad;Logico
+D;55;17;Llave Sumergida;Busqueda
+D;40;12;Mecanismo de la Escalera;Ingenio
 D;70;17;Buceo Profundo;Destreza
-D;70;14;10 Repeticiones Press de Banca: Destreza
+D;30;1;Baul de Entrada;Destreza
+D;35;7;Pesaje de Platos;Matematico
+D;50;10;Diario Secreto;Letras
+D;65;19;Asador Secreto;Ingenio
+D;35;22;Tablero Deslizante;Ingenio
+D;25;22;Partida de Ajedrez;Logico
+D;10;6;Receta Secreta;Busqueda
+D;25;18;Baldosa Numerada;Logico
+D;20;1;Perchero Oculto;Busqueda
+D;10;18;Alfombra Sospechosa;Busqueda
+D;30;24;Panel de Emergencia;Ingenio
+D;40;3;Libro Faltante;Busqueda
+D;15;12;Escalon Hueco;Busqueda
+D;25;14;Rutina de Calentamiento;Destreza
+D;35;10;Caja Fuerte;Ingenio
+D;30;6;Sopa de Letras Gourmet;Letras
 
-# --- 4. EQUIPOS (E;nombre;puntajeExigido;puntajeAcumulado;habActual;puntajeHabActual;desafios...) ---
-# Desafíos resueltos separados por comas y paréntesis, justo como lo lee tu bucle for
-E;Los Valientes;300;90;7;25;(20,30);(20,10);(21,20);(21,40);(7,25)
-E;Los Locos Adams;400;50;18;15;(20,10);(20,50);(18,15)
-E;Sherlocks;350;150;3;60;(20,30);(18,15);(18,35);(3,40);(3,20);(3,60)
-E;Escapistas Pro;500;200;22;45;(20,50);(18,35);(12,15);(22,25);(22,45)
+
+# ============================================================
+# 4. EQUIPOS
+# Formato:
+# E;nombre;puntajeExigido;puntajeAcumulado;habitacionActual;
+# ============================================================
+
+E;Sin Rumbo;250;0;20;0
+E;Los Valientes;300;75;7;25;(20,10);(20,20);(21,20);(7,25)
+E;Los Locos Adams;400;30;18;10;(20,20);(18,10)
+E;Sherlocks;350;105;3;50;(20,30);(18,25);(3,20);(3,30)
+E;Escapistas Pro;500;140;22;35;(20,20);(18,25);(3,20);(12,40);(22,35)
 E;Novatos;200;10;20;10;(20,10)
-E;Enigma Team;450;120;6;50;(20,30);(21,20);(7,25);(6,10);(6,50);(6,30)
-E;Los Investigadores;350;110;10;50;(20,10);(18,15);(12,15);(10,35);(10,50)
-E;Caza Misterios;400;140;24;55;(20,30);(18,35);(12,15);(24,15);(24,55)
-E;Aventureros;300;85;1;30;(20,10);(18,15);(12,15);(22,25);(1,30)
-E;Sin Rumbo;250;0;20;0;
+E;Enigma Team;450;105;6;40;(20,20);(21,20);(7,25);(6,10);(6,30)
+E;Los Investigadores;350;135;10;85;(20,10);(18,25);(12,15);(10,35);(10,50)
+E;Caza Misterios;250;280;24;15;(20,20);(18,25);(3,20);(12,40);(22,35);(14,70);(17,55);(24,15)
+E;Aventureros;300;110;1;30;(20,10);(18,10);(3,20);(12,15);(22,25);(1,30)
+E;Guardianes del Quincho;300;65;19;65;(19,65)
+E;Ruta Alternativa;200;55;23;25;(20,30);(23,25)
