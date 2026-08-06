@@ -14,6 +14,8 @@ import java.util.StringTokenizer;
 
 public class EscapeHouse {
     /*goyo path: /home/goyo/Escritorio/RepositoriosGit/facultad/EDD/TPO/TpFinalEDD/src/casona.txt */
+    //log: /home/goyo/Escritorio/RepositoriosGit/facultad/EDD/TPO/TpFinalEDD/src/log_escapeHouse.txt.
+
 
     private static final String RUTA_CARGA = "/home/goyo/Escritorio/RepositoriosGit/facultad/EDD/TPO/TpFinalEDD/src/casona.txt";
     private static final String RUTA_LOG = "/home/goyo/Escritorio/RepositoriosGit/facultad/EDD/TPO/TpFinalEDD/src/log_escapeHouse.txt";
@@ -596,7 +598,6 @@ public class EscapeHouse {
                     int puntajeMin = Integer.parseInt(datos[3].trim());
 
                     mapa.insertarArco(origen, destino, puntajeMin);
-                    mapa.insertarArco(destino, origen, puntajeMin);
                 }
             }
 
@@ -958,8 +959,6 @@ public class EscapeHouse {
             int[] puntajeMinimo = new int[1];
 
             boolean hayRuta = mapa.caminoMenorCosto(habOrigen,habDestino,caminoIdeal,puntajeMinimo);
-
-            // Armamos la respuesta si se encontró al menos un camino (el costo bajó)
             if (hayRuta) {
                 resultado = "Minimo puntaje para pasar de "+ habOrigen+ " a "+ habDestino+ ": "+ puntajeMinimo[0]+ "\nCamino : "+ caminoIdeal.toString();
             } else {
