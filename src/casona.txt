@@ -5,14 +5,14 @@
 # --- 1. HABITACIONES (H;codigo;nombre;planta;m2;salidaExterior) ---
 # Ordenadas estratégicamente para forzar rotaciones simples y dobles en el AVL principal
 H;10;Dormitorio principal;1;25.5;false
-H;5;Cochera;0;30.0;true
-H;20;Recibidor;0;15.0;true
+H;5;Cochera;0;30.0;false
+H;1;Recibidor;0;15.0;false
 H;3;Biblioteca;0;22.0;false
-H;8;Depósito;0;12.0;false
-H;1;Altillo;2;18.0;false
-H;15;Invernadero;0;28.0;true
+H;8;Deposito;0;12.0;false
+H;20;Altillo;2;18.0;false
+H;15;Invernadero;0;28.0;false
 H;22;Sala de Juegos;1;35.0;false
-H;24;Sótano;-1;40.0;false
+H;24;Sotano;-1;40.0;false
 H;12;Escalera;0;10.0;false
 H;18;Pasillo;0;8.5;false
 H;6;Cocina;0;20.0;false
@@ -20,11 +20,11 @@ H;7;Comedor;0;26.0;false
 H;2;Baño;0;6.5;false
 H;4;Bodega;-1;16.0;false
 H;9;Despensa;0;7.0;false
-H;11;Dormitorio de huéspedes;1;18.5;false
+H;11;Dormitorio de huespedes;1;18.5;false
 H;13;Escritorio;1;14.0;false
 H;14;Gimnasio;1;30.0;false
-H;16;Lavadero;0;9.0;true
-H;17;Natatorio;0;50.0;true
+H;16;Lavadero;0;9.0;false
+H;17;Natatorio;0;50.0;false
 H;19;Quincho;0;45.0;true
 H;21;Sala de Estar;0;24.0;false
 H;23;Sala de Música;1;20.0;false
@@ -60,29 +60,29 @@ P;1;10;20
 
 # --- 3. DESAFIOS (D;puntaje;codigoHabitacion;nombre;tipo) ---
 # Puntajes desordenados por habitación para generar rotaciones en los sub-árboles AVL
-D;30;20;Acertijo del Cuadro;Lógico
-D;10;20;Llave Escondida;Búsqueda
-D;50;20;Código del Reloj;Matemático
+D;30;20;Acertijo del Cuadro;Logico
+D;10;20;Llave Escondida;Busqueda
+D;50;20;Codigo del Reloj;Matematico
 D;20;21;Crucigrama Antiguo;Letras
 D;40;21;Secuencia de Luces;Ingenio
 D;15;18;Alfombra Sospechosa;Búsqueda
 D;35;18;El Piso Roto;Destreza
-D;25;7;Adivinanza de la Cena;Lógico
-D;45;7;Pesaje de Platos;Matemático
-D;10;6;Receta Secreta;Búsqueda
-D;50;6;Combinación del Horno;Ingenio
+D;25;7;Adivinanza de la Cena;Logico
+D;45;7;Pesaje de Platos;Matematico
+D;10;6;Receta Secreta;Busqueda
+D;50;6;Combinacion del Horno;Ingenio
 D;30;6;Sopa de Letras Gourmet;Letras
-D;40;3;Libro Faltante;Búsqueda
+D;40;3;Libro Faltante;Busqueda
 D;20;3;Cifra de Cesar;Letras
-D;60;3;Teorema Olvidado;Matemático
-D;15;12;Escescalón Hueco;Búsqueda
+D;60;3;Teorema Olvidado;Matematico
+D;15;12;Escescalon Hueco;Busqueda
 D;35;10;Caja Fuerte;Ingenio
 D;50;10;Diario Íntimo;Letras
-D;25;22;Partida de Ajedrez;Lógico
+D;25;22;Partida de Ajedrez;Logico
 D;45;22;Dardo al Blanco;Destreza
-D;15;24;Linterna sin Pilas;Búsqueda
+D;15;24;Linterna sin Pilas;Busqueda
 D;55;24;Engranajes Oxidados;Ingenio
-D;30;1;El Baúl Viejo;Destreza
+D;30;1;El Baul Viejo;Destreza
 D;65;19;El Asador Secreto;Ingenio
 D;70;17;Buceo Profundo;Destreza
 
