@@ -13,7 +13,8 @@ import Sistema.Lista.Lista;
 
 public class goyo {
 
-    public static boolean cargarDesdeArchivo(String rutaArchivo, Grafo grafo, DiccionarioAVL habitacionesAVL, HashMap<String, Equipo> equiposHash, HashMap<String, HashMap<Integer, Lista>> desafiosResueltos) {
+    public static boolean cargarDesdeArchivo(String rutaArchivo, Grafo grafo, DiccionarioAVL habitacionesAVL,
+         HashMap<String, Equipo> equiposHash, HashMap<String, HashMap<Integer, Lista>> desafiosResueltos) {
         boolean cargaExitosa = false;
         
         // Listas temporales
