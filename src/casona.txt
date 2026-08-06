@@ -85,6 +85,7 @@ D;55;24;Engranajes Oxidados;Ingenio
 D;30;1;El Baul Viejo;Destreza
 D;65;19;El Asador Secreto;Ingenio
 D;70;17;Buceo Profundo;Destreza
+D;70;14;10 Repeticiones Press de Banca: Destreza
 
 # --- 4. EQUIPOS (E;nombre;puntajeExigido;puntajeAcumulado;habActual;puntajeHabActual;desafios...) ---
 # Desafíos resueltos separados por comas y paréntesis, justo como lo lee tu bucle for
