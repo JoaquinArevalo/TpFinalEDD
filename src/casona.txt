@@ -3,31 +3,30 @@
 # ==========================================
 
 # --- 1. HABITACIONES (H;codigo;nombre;planta;m2;salidaExterior) ---
-# Ordenadas estratégicamente para forzar rotaciones simples y dobles en el AVL principal
-H;10;Dormitorio principal;1;25.5;false
-H;5;Cochera;0;30.0;false
-H;1;Recibidor;0;15.0;false
-H;3;Biblioteca;0;22.0;false
-H;8;Deposito;0;12.0;false
-H;20;Altillo;2;18.0;false
-H;15;Invernadero;0;28.0;false
-H;22;Sala de Juegos;1;35.0;false
+# Ordenadas para forzar el árbol exacto de la IA (Nivel 4 a Nivel 0 invertido)
 H;24;Sotano;-1;40.0;false
-H;12;Escalera;0;10.0;false
+H;22;Sala de Juegos;1;35.0;false
+H;20;Altillo;2;18.0;false
 H;18;Pasillo;0;8.5;false
-H;6;Cocina;0;20.0;false
-H;7;Comedor;0;26.0;false
-H;2;Baño;0;6.5;false
-H;4;Bodega;-1;16.0;false
-H;9;Despensa;0;7.0;false
-H;11;Dormitorio de huespedes;1;18.5;false
-H;13;Escritorio;1;14.0;false
 H;14;Gimnasio;1;30.0;false
-H;16;Lavadero;0;9.0;false
-H;17;Natatorio;0;50.0;false
-H;19;Quincho;0;45.0;true
-H;21;Sala de Estar;0;24.0;false
+H;10;Dormitorio principal;1;25.5;false
+H;7;Comedor;0;26.0;false
+H;5;Cochera;0;30.0;false
 H;23;Sala de Música;1;20.0;false
+H;19;Quincho;0;45.0;true
+H;16;Lavadero;0;9.0;false
+H;13;Escritorio;1;14.0;false
+H;9;Despensa;0;7.0;false
+H;6;Cocina;0;20.0;false
+H;3;Biblioteca;0;22.0;false
+H;1;Recibidor;0;15.0;false
+H;21;Sala de Estar;0;24.0;false
+H;15;Invernadero;0;28.0;false
+H;8;Deposito;0;12.0;false
+H;2;Baño;0;6.5;false
+H;17;Natatorio;0;50.0;false
+H;4;Bodega;-1;16.0;false
+H;11;Dormitorio de huespedes;1;18.5;false
 
 # --- 2. PUERTAS / ARCOS DEL GRAFO (P;origen;destino;puntajeMinimo) ---
 # Conectan la casa asegurando múltiples caminos para probar los algoritmos del grafo

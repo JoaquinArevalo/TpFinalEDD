@@ -432,8 +432,7 @@ public class Grafo {
             resultado = "El grafo esta vacio.\n";
         } else {
             while (verticeActual != null) {
-                resultado += "VERTICE[" + numVertice + "] = " + verticeActual.getElem().toString() + "\n";
-
+                resultado += "VERTICE[" + verticeActual.getElem().toString() + "] " + "\n";
                 NodoAdy adyacenteActual = verticeActual.getPrimerAdy();
                 int numAdy = 1;
 
@@ -441,7 +440,7 @@ public class Grafo {
                     resultado += "    Sin habitaciones adyacentes.\n";
                 } else {
                     while (adyacenteActual != null) {
-                        resultado += "    ADY[" + numAdy + "] -> " + adyacenteActual.getVertice().getElem().toString() + 
+                        resultado += "    ADY[" + adyacenteActual.getVertice().getElem().toString() + "]  " + 
                                     " | Puntaje exigido: " + adyacenteActual.getEtiqueta() + "\n";
                         
                         adyacenteActual = adyacenteActual.getSigAdyacente();
