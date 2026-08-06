@@ -249,11 +249,14 @@ public class Grafo {
         caminoActual.insertar(vert.getElem(), caminoActual.longitud() + 1);
 
         if (vert == destino) {
-            if (costoActual < minCosto[0]) {
+            if (costoActual < minCosto[0]) { //Si se elimina este if, puede entrar un camino de mayor costo y sera aceptado.
                 minCosto[0] = costoActual;
                 copiarLista(caminoActual, mejorCamino);
             }
-        } else if (costoActual < minCosto[0]) {
+        } else if (costoActual < minCosto[0]) {// este if solo chequea el costo actual, pero luego entra a la recurccion con:
+                                               // (costoActual + (int)ady.getEtiqueta()) y ese costo puede superar el minCosto[0],
+                                               // por lo que se puede entrar a la recurrecion con un costo mayor al minimo,
+                                               //y sin el if de arriba quedaria como aceptado.
             NodoAdy ady = vert.getPrimerAdy();
             while (ady != null) {
                 NodoVert sig = ady.getVertice();

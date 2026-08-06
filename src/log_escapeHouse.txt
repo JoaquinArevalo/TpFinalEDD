@@ -1,9 +1,9 @@
 LOG DEL SISTEMA ESCAPE HOUSE
-Inicio de ejecucion: 06/08/2026 13:41:23
+Inicio de ejecucion: 06/08/2026 16:04:26
 ============================================================
 
 ============================================================
-[06/08/2026 13:41:23] ESTADO DEL SISTEMA DESPUES DE LA CARGA INICIAL
+[06/08/2026 16:04:26] ESTADO DEL SISTEMA DESPUES DE LA CARGA INICIAL
 ============================================================
 
 ============================================================
@@ -12,7 +12,7 @@ Inicio de ejecucion: 06/08/2026 13:41:23
 
 1. AVL DE HABITACIONES
 ------------------------------------------------------------
-                                |-- 24 (Alt: 0, Bal: 0) -> Habitacion{codigo=24, nombre='Salida de Emergencia', planta=0, metrosCuadrados=12.0, tieneSalida=true}
+                                |-- 24 (Alt: 0, Bal: 0) -> Habitacion{codigo=24, nombre='Billar', planta=0, metrosCuadrados=12.0, tieneSalida=false}
                         |-- 23 (Alt: 1, Bal: -1) -> Habitacion{codigo=23, nombre='Sala de Musica', planta=1, metrosCuadrados=20.0, tieneSalida=false}
                 |-- 22 (Alt: 2, Bal: -1) -> Habitacion{codigo=22, nombre='Sala de Juegos', planta=1, metrosCuadrados=35.0, tieneSalida=false}
                         |-- 21 (Alt: 0, Bal: 0) -> Habitacion{codigo=21, nombre='Sala de Estar', planta=0, metrosCuadrados=24.0, tieneSalida=false}
@@ -147,7 +147,7 @@ Habitacion 23 - Sala de Musica
 |-- 25 (Alt: 1, Bal: -1) -> Desafio{codigoHabitacion=23, puntaje=25, nombre='Partitura Incompleta', tipo='Letras'}
 
 
-Habitacion 24 - Salida de Emergencia
+Habitacion 24 - Billar
         |-- 45 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=24, puntaje=45, nombre='Puerta de Seguridad', tipo='Logico'}
 |-- 30 (Alt: 1, Bal: 0) -> Desafio{codigoHabitacion=24, puntaje=30, nombre='Panel de Emergencia', tipo='Ingenio'}
         |-- 15 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=24, puntaje=15, nombre='Linterna sin Pilas', tipo='Busqueda'}
@@ -374,7 +374,7 @@ EQUIPO: Guardianes del Quincho
 
 
 ============================================================
-[06/08/2026 13:52:44] ESTADO FINAL DEL SISTEMA
+[06/08/2026 16:14:10] ESTADO FINAL DEL SISTEMA
 ============================================================
 
 ============================================================
@@ -383,7 +383,7 @@ EQUIPO: Guardianes del Quincho
 
 1. AVL DE HABITACIONES
 ------------------------------------------------------------
-                                |-- 24 (Alt: 0, Bal: 0) -> Habitacion{codigo=24, nombre='Salida de Emergencia', planta=0, metrosCuadrados=12.0, tieneSalida=true}
+                                |-- 24 (Alt: 0, Bal: 0) -> Habitacion{codigo=24, nombre='Billar', planta=0, metrosCuadrados=12.0, tieneSalida=false}
                         |-- 23 (Alt: 1, Bal: -1) -> Habitacion{codigo=23, nombre='Sala de Musica', planta=1, metrosCuadrados=20.0, tieneSalida=false}
                 |-- 22 (Alt: 2, Bal: -1) -> Habitacion{codigo=22, nombre='Sala de Juegos', planta=1, metrosCuadrados=35.0, tieneSalida=false}
                         |-- 21 (Alt: 0, Bal: 0) -> Habitacion{codigo=21, nombre='Sala de Estar', planta=0, metrosCuadrados=24.0, tieneSalida=false}
@@ -518,7 +518,7 @@ Habitacion 23 - Sala de Musica
 |-- 25 (Alt: 1, Bal: -1) -> Desafio{codigoHabitacion=23, puntaje=25, nombre='Partitura Incompleta', tipo='Letras'}
 
 
-Habitacion 24 - Salida de Emergencia
+Habitacion 24 - Billar
         |-- 45 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=24, puntaje=45, nombre='Puerta de Seguridad', tipo='Logico'}
 |-- 30 (Alt: 1, Bal: 0) -> Desafio{codigoHabitacion=24, puntaje=30, nombre='Panel de Emergencia', tipo='Ingenio'}
         |-- 15 (Alt: 0, Bal: 0) -> Desafio{codigoHabitacion=24, puntaje=15, nombre='Linterna sin Pilas', tipo='Busqueda'}
@@ -743,4 +743,4 @@ EQUIPO: Guardianes del Quincho
     DESAFIOS: [Desafio{codigoHabitacion=19, puntaje=65, nombre='Asador Secreto', tipo='Ingenio'}]
 ============================================================
 
-Fin de ejecucion: 06/08/2026 13:52:44
+Fin de ejecucion: 06/08/2026 16:14:10
